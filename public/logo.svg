@@ -1,0 +1,48 @@
+<svg viewBox="0 0 500 300" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background with multiple gradients -->
+  <defs>
+    <linearGradient id="mainGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#001a4d;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#00ccff;stop-opacity:1" />
+    </linearGradient>
+    
+    <linearGradient id="glowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FFD700;stop-opacity:0.8" />
+      <stop offset="100%" style="stop-color:#00ccff;stop-opacity:0.4" />
+    </linearGradient>
+    
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+  
+  <!-- Background circle with glow -->
+  <circle cx="250" cy="150" r="140" fill="url(#glowGrad)" opacity="0.2"/>
+  
+  <!-- Decorative top elements -->
+  <line x1="80" y1="40" x2="420" y2="40" stroke="url(#mainGrad)" stroke-width="4" stroke-linecap="round" opacity="0.6"/>
+  
+  <!-- First line: Unsubscribe -->
+  <text x="250" y="110" font-family="'Arial Black', Arial, sans-serif" font-size="68" font-weight="900" text-anchor="middle" fill="url(#mainGrad)" letter-spacing="3" filter="url(#glow)">
+    Unsubscribe
+  </text>
+  
+  <!-- Second line: Service -->
+  <text x="250" y="190" font-family="'Arial Black', Arial, sans-serif" font-size="68" font-weight="900" text-anchor="middle" fill="url(#mainGrad)" letter-spacing="3" filter="url(#glow)">
+    Service
+  </text>
+  
+  <!-- Decorative underline with multiple lines -->
+  <line x1="100" y1="210" x2="400" y2="210" stroke="url(#mainGrad)" stroke-width="3" stroke-linecap="round"/>
+  <line x1="110" y1="218" x2="390" y2="218" stroke="url(#mainGrad)" stroke-width="1" stroke-linecap="round" opacity="0.6"/>
+  
+  <!-- Decorative stars for commercial feel -->
+  <g opacity="0.8" fill="#FFD700" filter="url(#glow)">
+    <text x="50" y="180" font-size="50">✦</text>
+    <text x="400" y="180" font-size="50">✦</text>
+  </g>
+</svg>

@@ -1,0 +1,74 @@
+<header>
+  <div class="header-container">
+    <!-- Logo -->
+    <div class="logo">AMOUZOUN PROUME</div>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+      <input 
+        type="text" 
+        placeholder="Rechercher des produits..."
+      >
+      <button>Rechercher</button>
+    </div>
+
+    <!-- Account Menu -->
+    <div class="account-menu" [class.active]="isMenuOpen()" (click)="$event.stopPropagation()">
+      <button class="account-button" (click)="toggleMenu()">
+        👤 Mon compte ▼
+      </button>
+      <div class="dropdown-menu">
+        <a href="#profile">Mon compte</a>
+        <a href="#orders">Mes commandes</a>
+        <a href="#wishlist">Ma liste de souhaits</a>
+        <button id="logout" (click)="logout()">Se déconnecter</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- Main Content -->
+<main>
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <h1>Bienvenue sur Amouzoun</h1>
+    <p>Découvrez nos produits exclusifs à prix imbattables</p>
+    <button class="cta-button">Explorer maintenant</button>
+  </section>
+
+  <!-- Products Section -->
+  <section class="products-section">
+    <div class="products-table-wrapper">
+      <h2>Produits en vedette pas cher</h2>
+      <table class="products-table">
+
+        <tbody>
+          <tr *ngFor="let product of products">
+            <td>
+              <div class="product-row-card">
+                <img [src]="product.image" [alt]="product.name" [title]="product.name" class="product-thumb"/>
+                <div class="product-row-info">
+                  <div class="product-name">{{ product.name }}</div>
+                  <div class="product-reviews">{{ product.reviews }} avis</div>
+                  <div class="product-reviews">{{ getStarDisplay(product.rating) }}</div>
+                </div>
+              </div>
+            </td>
+            <td class="product-price-cell"><span class="product-name">{{ product.description}}</span></td>
+            <td class="product-price-cell"><span class="price-highlight">{{ product.price | currency: 'EUR': '€' }}</span></td>
+            <td class="product-action-cell">
+              <button class="add-to-cart">Acheter</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer>
+  <p>&copy; 2025 Amouzoun Proume - Conditions générales</p>
+  <p>Livraison rapide partout au Listenbourg</p>
+</footer>
+
