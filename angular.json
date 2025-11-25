@@ -28,7 +28,7 @@
             "styles": [
               "src/styles.css"
             ],
-            "outputPath": "./dist"
+            "outputPath": "dist/unsubscribe-service"
           },
           "configurations": {
             "production": {
