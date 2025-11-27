@@ -1,0 +1,44 @@
+<header>
+  <div class="header-container">
+    <!-- Logo -->
+    <a class="logo" href="/amouzoun">AMOUZOUN PROUME</a>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+      <input 
+        type="text" 
+        placeholder="Rechercher des produits..."
+      >
+      <button>Rechercher</button>
+    </div>
+
+    <!-- Account Menu -->
+    <div class="account-menu"  [class.active]="isMenuOpen()" (click)="$event.stopPropagation()">
+      <button class="account-button" (click)="toggleMenu()">
+        👤 Mon compte ▼
+      </button>
+      <div class="dropdown-menu">
+        <a href="/amouzoun/account">Mon compte</a>
+        <a href="#orders">Mes commandes</a>
+        <a href="#wishlist">Ma liste de souhaits</a>
+        <button id="logout" (click)="logout()">Se déconnecter</button>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="contact-container">
+  <div class="error-box">
+    <h1>⚠️ Service Indisponible</h1>
+    <p>Le service de contact Amouzoun Proum est actuellement indisponible.</p>
+    <p>Veuillez nous excuser pour ce désagrément.</p>
+    <p>Nous travaillons pour rétablir ce service au plus vite.</p>
+    <a href="amouzoun/" class="back-button">Retour à l'accueil</a>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <p>&copy; 2025 Amouzoun Proume - Conditions générales</p>
+  <p>Livraison rapide partout au Listenbourg</p>
+</footer>
+
