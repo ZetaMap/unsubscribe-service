@@ -24,6 +24,16 @@ export class ContactComponent {
 
   constructor(private router: Router) {}
 
+  goToHome(): void {
+    this.closeMenu();
+    this.router.navigate(['amouzoun']);
+  }
+
+  goToAccount(): void {
+    this.closeMenu();
+    this.router.navigate(['amouzoun/account']);
+  }
+  
     logout(): void {
     this.closeMenu();
     this.router.navigate(['']);

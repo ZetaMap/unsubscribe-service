@@ -25,6 +25,16 @@ export class AccountComponent {
 
   constructor(private router: Router) {}
 
+  goToHome(): void {
+    this.closeMenu();
+    this.router.navigate(['amouzoun']);
+  }
+
+  goToAccount(): void {
+    this.closeMenu();
+    this.router.navigate(['amouzoun/account']);
+  }
+  
   navigateTo(page: string): void {
     switch(page) {
       case 'subscription':
