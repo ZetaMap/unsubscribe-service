@@ -643,11 +643,11 @@ footer p {
 /* Action Buttons Section */
 .unsubscribe-actions {
   display: flex;
-  gap: 15px;
+  gap: 48px; /* larger spacing between buttons */
   justify-content: center;
   flex-wrap: wrap;
   margin-top: 40px;
-  padding: 20px;
+  padding: 28px 40px; /* more breathing room */
   background-color: #f5f5f5;
   border-radius: 8px;
 }
@@ -660,6 +660,7 @@ footer p {
   font-weight: bold;
   cursor: pointer;
   transition: all 0.3s ease;
+  min-width: 180px; /* ensure buttons have visible separation on wide screens */
 }
 
 .btn-primary {
@@ -670,18 +671,6 @@ footer p {
 .btn-primary:hover {
   background-color: #f0860d;
   box-shadow: 0 4px 12px rgba(255, 153, 0, 0.3);
-  transform: translateY(-2px);
-}
-
-.btn-secondary {
-  background-color: #232f3e;
-  color: #ffffff;
-  border: 2px solid #ff9900;
-}
-
-.btn-secondary:hover {
-  background-color: #1a1a1a;
-  box-shadow: 0 4px 12px rgba(35, 47, 62, 0.3);
   transform: translateY(-2px);
 }
 
@@ -705,6 +694,7 @@ footer p {
 
   .unsubscribe-actions {
     flex-direction: column;
+    gap: 20px;
   }
 
   .btn {
