@@ -42,7 +42,6 @@
       <div class="card" (click)="toggleManageDropdown()">
         <h3>Gérer / Annuler</h3>
         <p>Modifiez vos options d'abonnement ou annulez votre abonnement.</p>
-        <a class="manage-button">Gérer l'abonnement</a>
         <div class="dropdown-menu" [class.active]="isManageDropdownOpen()" (click)="$event.stopPropagation()">
           <div class="manage-section">
             <h3>Mettre a jour l'abonnement, le renouvellement, etc</h3>
