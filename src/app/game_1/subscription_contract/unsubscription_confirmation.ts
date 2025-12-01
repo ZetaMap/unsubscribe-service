@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
@@ -7,10 +7,10 @@ import { Router } from '@angular/router';
   selector: 'app-contact',
   standalone: true,
   imports: [CommonModule, RouterModule],
-  templateUrl: './unsubscribe_page.html',
+  templateUrl: './unsubscription_confirmation.html',
   styleUrl: '../game_1.css'
 })
-export class UnsubscribePageComponent {
+export class UnsubscriptionConfirmComponent {
 
   isMenuOpen = signal(false);
   searchQuery = signal('');
@@ -35,13 +35,18 @@ export class UnsubscribePageComponent {
     this.router.navigate(['amouzoun/account']);
   }
 
-  confirmUnsubscribe(): void {
+  goToContact(): void {
     this.closeMenu();
-    this.router.navigate(['amouzoun/account/unsubscription-confirmation']);
+    this.router.navigate(['amouzoun/contact']);
   }
 
     logout(): void {
     this.closeMenu();
     this.router.navigate(['']);
+  }
+
+  confirmCancel(): void {
+    alert('Votre abonnement a été annulé. Merci de votre fidélité.');
+    this.router.navigate(['amouzoun/account']);
   }
 }

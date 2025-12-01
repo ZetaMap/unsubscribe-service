@@ -705,3 +705,42 @@ footer p {
     font-size: 24px;
   }
 }
+  .unsubscribe-details {
+    margin-top: 30px;
+    font-size: 14px;
+    color: #666;
+    line-height: 1.6;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
+  .unsubscribe-details h3 {
+    margin-bottom: 10px;
+    color: #232f3e;
+  }
+  .options-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  .options-table th, .options-table td {
+    border: 1px solid #ddd;
+    padding: 12px 15px;
+    text-align: left;
+  }
+  .options-table th {
+    background-color: #f5f5f5;
+    color: #232f3e;
+  }
+  .options-table tr:hover {
+    background-color: #f9f9f9;
+  }
+  .unsubscribe-help {
+    margin-top: 30px;
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+  }
+  
+
