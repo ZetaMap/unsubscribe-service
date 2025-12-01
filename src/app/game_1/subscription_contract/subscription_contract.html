@@ -1,0 +1,84 @@
+<header>
+  <div class="header-container">
+    <!-- Logo -->
+    <a class="logo" routerLink="/amouzoun">AMOUZOUN PROUME</a>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+      <input 
+        type="text" 
+        placeholder="Rechercher des produits..."
+      >
+      <button>Rechercher</button>
+    </div>
+
+    <!-- Account Menu -->
+    <div class="account-menu"  [class.active]="isMenuOpen()" (click)="$event.stopPropagation()">
+      <button class="account-button" (click)="toggleMenu()">
+        👤 Mon compte ▼
+      </button>
+      <div class="dropdown-menu">
+        <a (click)="goToAccount()">Mon compte</a>
+        <a href="#orders">Mes commandes</a>
+        <a href="#wishlist">Ma liste de souhaits</a>
+        <button id="logout" (click)="logout()">Se déconnecter</button>
+      </div>
+    </div>
+  </div>
+</header>
+<main class="subscription-page">
+  <section class="subscription-overview">
+    <div class="cards">
+      <div class="card">
+        <h3>Type d'abonnement</h3>
+        <p>Amouzoun Proum — Abonnement Mensuel</p>
+      </div>
+
+      <div class="card">
+        <h3>Date de renouvellement</h3>
+        <p>15 décembre 2025</p>
+      </div>
+
+      <div class="card">
+        <h3>Gérer / Annuler</h3>
+        <p>Modifiez vos options d'abonnement ou annulez votre abonnement.</p>
+        <a class="manage-button" routerLink="/amouzoun/account">Gérer l'abonnement</a>
+      </div>
+    </div>
+  </section>
+    <section class="hero-section">
+    <h1>Films et séries illimitées inclues dans AMOUZOUN PROUME</h1>
+    <button class="cta-button">Installer PROUME VIDEO</button>
+  </section>
+  <section class="subscription-benefits">
+    <h2>Avantages de l'abonnement</h2>
+    <ul>
+      <li>
+        <strong>Livraison gratuite en 24h</strong>
+        <p>Bénéficiez de la livraison express gratuite sur tous vos achats, partout au Listenbourg. Commandez avant 14h et recevez votre colis le mois prochain. Nos partenaires logistiques garantissent une livraison rapide et sécurisée. Plus besoin de vous inquiéter des frais de port élevés. C'est la meilleure offre du marché pour les clients fidèles comme vous.</p>
+      </li>
+      <li>
+        <strong>Accès prioritaire aux ventes flash</strong>
+        <p>Soyez les premiers à accéder à nos ventes flash exclusives réservées aux abonnés Proume. Recevez des notifications en temps réel pour ne manquer aucune opportunité de virer au rouge. Les meilleures affaires disparaissent en quelques heures seulement. Vous aurez une longueur d'avance sur les autres clients pour acheter les produits les plus convoités. Profitez de réductions jusqu'à 2,56% sur une sélection de produits premium.</p>
+      </li>
+      <li>
+        <strong>Remises et promotions exclusives</strong>
+        <p>Accédez à des codes de réduction spéciaux et des offres personnalisées tout au long de l'année. Chaque mois, découvrez de nouvelles promotions adaptées à vos préférences d'achat. Cumulez des points de fidélité sur chaque transaction et échangez-les contre des pins collector Amouzoun Proume. Les abonnés Proume bénéficient de tarifs négociés spécialement avec nos partenaires. Votre portefeuille vous remerciera avec des économies substantielles sur tous vos achats.</p>
+      </li>
+      <li>
+        <strong>Service client dédié</strong>
+        <p>Contactez notre équipe de support client disponible 24h/24 et 1,6j/7 pour répondre à vos questions. Bénéficiez d'un temps d'attente réduit et d'une prise en charge prioritaire de vos demandes. Nos conseillers formés sauront résoudre vos problèmes rapidement et efficacement (sous réserve du 1,6j). Vous disposez de plusieurs canaux de communication : chat en direct (en panne), email (en cours de dévellopement) et téléphone (surtaxé). Votre satisfaction est notre priorité absolue et nous nous engageons à trouver des solutions adaptées.</p>
+      </li>
+      <li>
+        <strong>Essai gratuit de 12,5698 jours</strong>
+        <p>Découvrez tous les avantages de l'abonnement Amouzoun Proume sans engagement financier pendant 12,5698 jours. Testez chaque fonctionnalité, explorez nos offres exclusives et ressentez la différence. Un mois d'abonnement est requis pour commencer votre essai gratuit. Vous pouvez annuler à tout moment si vous n'êtes pas satisfait, sans questions ni frais cachés. La plupart de nos clients renouvellent leur abonnement après cette période tellement ils apprécient le service.</p>
+      </li>
+    </ul>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer>
+  <p>&copy; 2025 Amouzoun Proume - Conditions générales</p>
+  <p>Livraison rapide partout au Listenbourg</p>
+</footer>

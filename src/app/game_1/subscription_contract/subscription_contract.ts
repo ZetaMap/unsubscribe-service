@@ -7,10 +7,10 @@ import { Router } from '@angular/router';
   selector: 'app-contact',
   standalone: true,
   imports: [CommonModule, RouterModule],
-  templateUrl: './account_game_1.html',
+  templateUrl: './subscription_contract.html',
   styleUrl: '../game_1.css'
 })
-export class AccountComponent {
+export class SubscriptionContractComponent {
 
   isMenuOpen = signal(false);
   searchQuery = signal('');
@@ -33,17 +33,6 @@ export class AccountComponent {
   goToAccount(): void {
     this.closeMenu();
     this.router.navigate(['amouzoun/account']);
-  }
-
-  navigateTo(page: string): void {
-    switch(page) {
-      case 'subscription':
-        this.router.navigate(['amouzoun/account/subscription-contract']);
-        break;
-      case 'contact':
-        this.router.navigate(['amouzoun/contact']);
-        break;
-    }
   }
 
     logout(): void {

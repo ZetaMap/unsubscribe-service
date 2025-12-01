@@ -32,7 +32,7 @@
   <!-- Hero Section -->
   <section class="hero-section">
     <h1>Bienvenue sur Amouzoun</h1>
-    <p>Découvrez nos produits exclusifs à prix imbattables</p>
+    <p>Découvrez nos produits exclusifs à prix éxcecrable</p>
     <button class="cta-button">Explorer maintenant</button>
   </section>
 
@@ -46,7 +46,7 @@
           <tr *ngFor="let product of products">
             <td>
               <div class="product-row-card">
-                <img [src]="product.image" [alt]="product.name" [title]="product.name" class="product-thumb"/>
+                <img alt="" [src]="product.image" [alt]="product.name" [title]="product.name" class="product-thumb"/>
                 <div class="product-row-info">
                   <div class="product-name">{{ product.name }}</div>
                   <div class="product-reviews">{{ product.reviews }} avis</div>
