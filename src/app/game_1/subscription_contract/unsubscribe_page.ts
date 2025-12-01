@@ -1,4 +1,4 @@
-import { Component, signal, HostListener } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
@@ -7,46 +7,23 @@ import { Router } from '@angular/router';
   selector: 'app-contact',
   standalone: true,
   imports: [CommonModule, RouterModule],
-  templateUrl: './subscription_contract.html',
+  templateUrl: './unsubscribe_page.html',
   styleUrl: '../game_1.css'
 })
-export class SubscriptionContractComponent {
+export class UnsubscribePageComponent {
 
   isMenuOpen = signal(false);
-  isManageDropdownOpen = signal(false);
   searchQuery = signal('');
 
    toggleMenu(): void {
     this.isMenuOpen.set(!this.isMenuOpen());
   }
 
-  toggleManageDropdown(): void {
-    this.isManageDropdownOpen.set(!this.isManageDropdownOpen());
-  }
-
   closeMenu(): void {
     this.isMenuOpen.set(false);
   }
 
-  closeManageDropdown(): void {
-    this.isManageDropdownOpen.set(false);
-  }
-
-  @HostListener('document:click', ['$event'])
-  onDocumentClick(event: MouseEvent): void {
-    const target = event.target as HTMLElement;
-    const card = target.closest('.card');
-    if (!card) {
-      this.closeManageDropdown();
-    }
-  }
-
   constructor(private router: Router) {}
-
-  goToUnsubscribe(): void {
-    this.closeMenu();
-    this.router.navigate(['amouzoun/account/unsubscribe-page']);
-  }
 
   goToHome(): void {
     this.closeMenu();
@@ -55,6 +32,11 @@ export class SubscriptionContractComponent {
 
   goToAccount(): void {
     this.closeMenu();
+    this.router.navigate(['amouzoun/account']);
+  }
+
+  confirmUnsubscribe(): void {
+    alert('Votre abonnement a été annulé avec succès');
     this.router.navigate(['amouzoun/account']);
   }
 

@@ -1,0 +1,85 @@
+<header>
+  <div class="header-container">
+    <!-- Logo -->
+    <a class="logo" routerLink="/amouzoun">AMOUZOUN PROUME</a>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+      <input 
+        type="text" 
+        placeholder="Rechercher des produits..."
+      >
+      <button>Rechercher</button>
+    </div>
+
+    <!-- Account Menu -->
+    <div class="account-menu"  [class.active]="isMenuOpen()" (click)="$event.stopPropagation()">
+      <button class="account-button" (click)="toggleMenu()">
+        👤 Mon compte ▼
+      </button>
+      <div class="dropdown-menu">
+        <a (click)="goToAccount()">Mon compte</a>
+        <a href="#orders">Mes commandes</a>
+        <a href="#wishlist">Ma liste de souhaits</a>
+        <button id="logout" (click)="logout()">Se déconnecter</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main class="unsubscribe-page">
+  <section class="unsubscribe-header">
+    <h1>⚠️ Nous sommes tristes de te voir partir</h1>
+    <p>Avant de confirmer ton désabonnement, découvre tous les avantages que tu vas perdre :</p>
+  </section>
+
+  <section class="unsubscribe-benefits">
+    <div class="benefit-card">
+      <div class="benefit-icon">🚚</div>
+      <h3>Livraison gratuite en 24h</h3>
+      <p>Profite de la livraison express gratuite sur tous tes achats</p>
+    </div>
+
+    <div class="benefit-card">
+      <div class="benefit-icon">⚡</div>
+      <h3>Accès prioritaire aux ventes flash</h3>
+      <p>Sois le premier à accéder aux meilleures offres exclusives</p>
+    </div>
+
+    <div class="benefit-card">
+      <div class="benefit-icon">💰</div>
+      <h3>Remises et promotions exclusives</h3>
+      <p>Bénéficie de réductions spéciales toute l'année</p>
+    </div>
+
+    <div class="benefit-card">
+      <div class="benefit-icon">📌</div>
+      <h3>Pins a collectionner</h3>
+      <p>Tout tes pins rare partirons à la benne</p>
+    </div>
+
+    <div class="benefit-card">
+      <div class="benefit-icon">👨‍💼</div>
+      <h3>Service client dédié</h3>
+      <p>Contacte notre équipe disponible 24h/24 et 1,6j/7</p>
+    </div>
+
+    <div class="benefit-card">
+      <div class="benefit-icon">🎁</div>
+      <h3>Essai gratuit de 12,5698 jours</h3>
+      <p>Réessaie avec engagement pendant 12,5698 jours</p>
+    </div>
+  </section>
+
+  <section class="unsubscribe-actions">
+    <button class="btn btn-secondary">📧 M'envoyer un rappel plus tard</button>
+    <button class="btn btn-primary">🔍 Voir plus d'abonnements</button>
+    <button class="btn btn-danger" (click)="confirmUnsubscribe()">❌ Continuer pour annuler</button>
+  </section>
+</main>
+
+<!-- Footer -->
+<footer>
+  <p>&copy; 2025 Amouzoun Proume - Conditions générales</p>
+  <p>Livraison rapide partout au Listenbourg</p>
+</footer>
