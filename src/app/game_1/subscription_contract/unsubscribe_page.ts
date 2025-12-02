@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-contact',
+  selector: 'app-unsubscribe-page',
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './unsubscribe_page.html',
@@ -37,7 +37,7 @@ export class UnsubscribePageComponent {
 
   confirmUnsubscribe(): void {
     this.closeMenu();
-    this.router.navigate(['amouzoun/account/unsubscription-confirmation']);
+    this.router.navigate(['amouzoun/account/proume/unsubscribe/confirm']);
   }
 
     logout(): void {

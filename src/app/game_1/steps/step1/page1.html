@@ -1,0 +1,47 @@
+<header>
+  <div class="header-container">
+    <!-- Logo -->
+    <a class="logo" routerLink="/amouzoun">AMOUZOUN PROUME</a>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+      <input 
+        type="text" 
+        placeholder="Rechercher des produits..."
+      >
+      <button>Rechercher</button>
+    </div>
+
+    <!-- Account Menu -->
+    <div class="account-menu"  [class.active]="isMenuOpen()" (click)="$event.stopPropagation()">
+      <button class="account-button" (click)="toggleMenu()">
+        👤 Mon compte ▼
+      </button>
+      <div class="dropdown-menu">
+        <a (click)="goToAccount()">Mon compte</a>
+        <a href="#orders">Mes commandes</a>
+        <a href="#wishlist">Ma liste de souhaits</a>
+        <button id="logout" (click)="logout()">Se déconnecter</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+    <section class="content">
+        <h1 class="unsubscribe-header">Etes vous sûr de vouloir renoncer à Amouzoun Proume ?</h1>
+        <div class="unsubscribe-actions-confirmation">
+            <button class="btn btn-primary" (click)="goToAccount()">Non</button>
+            <button class="btn btn-danger" (click)="goNext()">Oui...</button>
+        </div>
+    </section>
+    <section class="unsubscribe-help">
+        <h2>Besoin d'aide?</h2>
+        <p>Contactez notre <u style="color:blue"><a style="color:blue" (click)="goToContact()">Service Client Dédié</a></u> pour toute question ou assistance concernant votre abonnement.</p>
+    </section>
+</main>
+<!-- Footer -->
+<footer>
+  <p>&copy; 2025 Amouzoun Proume - Conditions générales</p>
+  <p>Livraison rapide partout au Listenbourg</p>
+</footer>

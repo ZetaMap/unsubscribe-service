@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-contact',
+  selector: 'app-account',
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './account_game_1.html',
@@ -38,7 +38,7 @@ export class AccountComponent {
   navigateTo(page: string): void {
     switch(page) {
       case 'subscription':
-        this.router.navigate(['amouzoun/account/subscription-contract']);
+        this.router.navigate(['amouzoun/account/proume']);
         break;
       case 'contact':
         this.router.navigate(['amouzoun/contact']);

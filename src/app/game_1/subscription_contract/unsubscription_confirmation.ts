@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-contact',
+  selector: 'app-unsubscription-confirmation',
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './unsubscription_confirmation.html',
@@ -45,8 +45,7 @@ export class UnsubscriptionConfirmComponent {
     this.router.navigate(['']);
   }
 
-  confirmCancel(): void {
-    alert('Votre abonnement a été annulé. Merci de votre fidélité.');
-    this.router.navigate(['amouzoun/account']);
+  goToStep1(): void {
+    this.router.navigate(['amouzoun/account/proume/unsubscribe/confirm/1']);
   }
 }
