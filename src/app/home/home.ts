@@ -4,11 +4,11 @@ import { RouterModule } from '@angular/router';
 
 // Composant pour la page d'accueil de l'application
 @Component({
-  selector: 'app-home-page',
+  selector: 'app-home',
   standalone: true,
   imports: [CommonModule, RouterModule],
-  templateUrl: '../app.html',
-  styleUrl: '../app.css'
+  templateUrl: './home.html',
+  styleUrl: './home.css'
 })
 export class HomePageComponent {
   protected readonly title = signal('unsubscribe-service');

@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { Game1Component } from './game_1/game_1';
-import { HomePageComponent } from './home-page/home-page';
+import { HomePageComponent } from './home/home';
 import { ContactComponent } from './game_1/account/contact';
 import { AccountComponent } from './game_1/account/account';
 import { SubscriptionContractComponent } from './game_1/subscription_contract/subscription_contract';
