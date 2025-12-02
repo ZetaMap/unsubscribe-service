@@ -5,7 +5,7 @@
   <title>Unsubscribe Service</title>
   <base href="/">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <!-- <link rel="icon" type="image/x-icon" href="favicon.ico"> -->
 
   <!-- Github Pages hack to allow SPA refresh without receiving 404. -->
   <script>
@@ -17,7 +17,34 @@
   </script>
   <!-- /Github Pages hack. -->
 </head> 
+<style>
+.loader {
+  position: absolute;
+  top: calc(50% - 20px);
+  left: calc(50% - 20px);
+  border: 8px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 8px solid #3498db;
+  width: 40px;
+  height: 40px;
+  -webkit-animation: spin 2s linear infinite; /* Safari */
+  animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+</style>
 <body>
-  <app-root></app-root>
+  <app-root>
+    <div class="loader"></div>
+  </app-root>
 </body>
 </html>
