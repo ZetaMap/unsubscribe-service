@@ -2,6 +2,7 @@ import { Component, signal, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
+import { store } from '../../app.store';
 
 @Component({
   selector: 'app-subscription-contract',

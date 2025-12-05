@@ -1,18 +1,19 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
-import { store } from '../../app.store';
+import { store } from '../../../app.store';
 
 @Component({
-  selector: 'app-contact',
+  selector: 'game1-step1',
   standalone: true,
   imports: [CommonModule, RouterModule],
-  templateUrl: './contact.html',
-  styleUrl: '../game_1.css'
+  templateUrl: './level1.html',
+  styleUrl: '../../game_1.css'
 })
-export class ContactComponent {
-    isMenuOpen = signal(false);
+export class Step1Component {
+
+  isMenuOpen = signal(false);
   searchQuery = signal('');
 
    toggleMenu(): void {
@@ -25,6 +26,11 @@ export class ContactComponent {
 
   constructor(private router: Router) {}
 
+  goNext(): void {
+    this.closeMenu();
+    this.router.navigate(['amouzoun/account/proume/unsubscribe/confirm/2']);
+  }
+
   goToHome(): void {
     this.closeMenu();
     this.router.navigate(['amouzoun']);
@@ -34,7 +40,11 @@ export class ContactComponent {
     this.closeMenu();
     this.router.navigate(['amouzoun/account']);
   }
-  
+   goToContact(): void {
+    this.closeMenu();
+    this.router.navigate(['amouzoun/contact']);
+  }
+
     logout(): void {
     this.closeMenu();
     this.router.navigate(['']);
