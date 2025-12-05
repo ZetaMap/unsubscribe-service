@@ -9,9 +9,10 @@ import { store } from '../../app.store';
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './subscription_contract.html',
-  styleUrl: '../game_1.css'
+  styleUrls: ['../game_1.css']
 })
 export class SubscriptionContractComponent {
+  public store = store;
 
   isMenuOpen = signal(false);
   isManageDropdownOpen = signal(false);

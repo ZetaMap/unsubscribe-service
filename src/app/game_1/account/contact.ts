@@ -9,9 +9,10 @@ import { store } from '../../app.store';
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './contact.html',
-  styleUrl: '../game_1.css'
+  styleUrls: ['../game_1.css']
 })
 export class ContactComponent {
+  public store = store;
     isMenuOpen = signal(false);
   searchQuery = signal('');
 

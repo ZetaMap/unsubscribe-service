@@ -15,7 +15,7 @@
     <!-- Account Menu -->
     <div class="account-menu" [class.active]="isMenuOpen()" (click)="$event.stopPropagation()">
       <button class="account-button" (click)="toggleMenu()">
-        👤 Mon compte ▼
+        👤{{ store.username() }} ▼
       </button>
       <div class="dropdown-menu">
         <a (click)="goToAccount()">Mon compte</a>
@@ -31,7 +31,7 @@
 <main>
   <!-- Hero Section -->
   <section class="hero-section">
-    <h1>Bienvenue sur Amouzoun</h1>
+    <h1>Bienvenue sur Amouzoun, {{ store.username() }} !</h1>
     <p>Découvrez nos produits exclusifs à prix éxcecrable</p>
     <button class="cta-button">Explorer maintenant</button>
   </section>

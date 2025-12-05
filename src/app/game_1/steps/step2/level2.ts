@@ -13,9 +13,10 @@ interface Choix {
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './level2.html',
-  styleUrl: '../../game_1.css'
+  styleUrls: ['../../game_1.css']
 })
 export class Step2Component {
+  public store = store;
 
   choix: Choix[] = [
     {raison: 'Le prix est trop bas'},

@@ -9,9 +9,10 @@ import { store } from '../../../app.store';
   standalone: true,
   imports: [CommonModule, RouterModule],
   templateUrl: './level1.html',
-  styleUrl: '../../game_1.css'
+  styleUrls: ['../../game_1.css']
 })
 export class Step1Component {
+  public store = store;
 
   isMenuOpen = signal(false);
   searchQuery = signal('');

@@ -15,7 +15,7 @@
     <!-- Account Menu -->
     <div class="account-menu"  [class.active]="isMenuOpen()" (click)="$event.stopPropagation()">
       <button class="account-button" (click)="toggleMenu()">
-        👤 Mon compte ▼
+        👤 {{ store.username() }} ▼
       </button>
       <div class="dropdown-menu">
         <a (click)="goToAccount()">Mon compte</a>
@@ -32,7 +32,7 @@
         <h1 class="unsubscribe-header">Etes vous sûr de vouloir renoncer à Amouzoun Proume ?</h1>
         <div class="unsubscribe-actions-confirmation">
             <button class="btn btn-primary" (click)="goToAccount()">Non</button>
-            <button class="btn btn-danger" (click)="goNext()">Oui...</button>
+            <button class="btn btn-danger btn-confirm" (click)="goNext()">Oui...</button>
         </div>
     </section>
     <br>

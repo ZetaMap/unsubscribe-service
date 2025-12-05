@@ -15,7 +15,7 @@
     <!-- Account Menu -->
     <div class="account-menu"  [class.active]="isMenuOpen()" (click)="$event.stopPropagation()">
       <button class="account-button" (click)="toggleMenu()">
-        👤 Mon compte ▼
+        👤 {{ store.username() }} ▼
       </button>
       <div class="dropdown-menu">
         <a (click)="goToAccount()">Mon compte</a>
@@ -76,7 +76,7 @@
   <section class="unsubscribe-actions">
     <button class="btn btn-primary">Me le rappeler plus tard</button>
     <button class="btn btn-primary">Conserver l'abonnement</button>
-    <button class="btn btn-danger" (click)="goToStep1()">Annuler mon abonnement maintenant</button>
+    <button class="btn btn-danger btn-confirm" (click)="goToStep1()">Annuler mon abonnement maintenant</button>
   </section>
   <section class="unsubscribe-help">
     <h2>Besoin d'aide?</h2>

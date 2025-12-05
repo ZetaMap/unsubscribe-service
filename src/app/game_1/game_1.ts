@@ -19,9 +19,11 @@ interface Product {
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './game_1.html',
-  styleUrl: './game_1.css'
+  styleUrls: ['./game_1.css']
 })
 export class Game1Component {
+  // expose the global store so the template can read signals like `store.username()`
+  public store = store;
   isMenuOpen = signal(false);
   searchQuery = signal('');
 

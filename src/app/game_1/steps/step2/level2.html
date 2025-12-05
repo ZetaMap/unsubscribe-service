@@ -15,7 +15,7 @@
     <!-- Account Menu -->
     <div class="account-menu"  [class.active]="isMenuOpen()" (click)="$event.stopPropagation()">
       <button class="account-button" (click)="toggleMenu()">
-        👤 Mon compte ▼
+        👤 {{ store.username() }} ▼
       </button>
       <div class="dropdown-menu">
         <a (click)="goToAccount()">Mon compte</a>
