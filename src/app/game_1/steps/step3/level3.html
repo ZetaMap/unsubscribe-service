@@ -1,0 +1,92 @@
+<ng-container *ngIf="!modal">
+  <header>
+    <div class="header-container">
+    <!-- Logo -->
+    <a class="logo" routerLink="/amouzoun">AMOUZOUN PROUME</a>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+      <input
+        type="text"
+        placeholder="Rechercher des produits..."
+        [value]="amouzounStore.searchBarQuery()"
+        (input)="amouzounStore.searchBarQuery.set($any($event.target).value)"
+      />
+      <button>Rechercher</button>
+    </div>
+
+    <!-- Account Menu -->
+    <div class="account-menu" [class.active]="isMenuOpen()" (click)="$event.stopPropagation()">
+      <button class="account-button" (click)="toggleMenu()">
+        👤 {{ store.username() }} ▼
+      </button>
+      <div class="dropdown-menu">
+        <a (click)="goToAccount()">Mon compte</a>
+        <a href="#orders">Mes commandes</a>
+        <a href="#wishlist">Ma liste de souhaits</a>
+        <button id="logout" (click)="logout()">Se déconnecter</button>
+      </div>
+    </div>
+    </div>
+  </header>
+</ng-container>
+
+<main>
+  <section class="captcha-wrapper" role="dialog" aria-modal="true" aria-label="Vérification de sécurité">
+    <div class="captcha-instruction">
+      <div class="instruction-title">Select all images with :</div>
+      <div class="target-pill"><h2>{{ targetLabel }}</h2></div>
+    </div>
+
+    <div class="captcha-grid">
+      <div
+        *ngFor="let item of gridImages"
+        class="captcha-cell"
+        [attr.role]="'button'"
+        [attr.tabindex]="0"
+        [attr.aria-pressed]="selectedIds.has(item.id)"
+        [class.selected]="selectedIds.has(item.id)"
+        (click)="toggleSelect(item.id)"
+        (keydown)="handleKey($event, item.id)">
+        <img [src]="item.src" alt="{{ item.label }}" title="{{ item.label }}" />
+        <span class="checkmark" *ngIf="selectedIds.has(item.id)">✓</span>
+      </div>
+    </div>
+
+    <div class="captcha-actions" role="group" aria-label="captcha actions">
+      <div class="left-actions">
+      <button class="btn-secondary-captcha" (click)="shuffleGrid()" aria-label="Refresh images" title="Refresh images">
+        <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+          <path d="M21 12a9 9 0 1 0-9 9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+          <path d="M21 3v6h-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+      </button>
+      <button class="btn-secondary-captcha" (click)="toggleSpeak()" [attr.aria-pressed]="isSpeaking()" aria-label="Read instructions" title="Read instructions">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M4 15v-2a8 8 0 0116 0v2" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M7 15a2 2 0 01-2 2H5a1 1 0 01-1-1v-3a1 1 0 011-1h0a2 2 0 012 2v1z" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M17 15a2 2 0 002 2h0a1 1 0 001-1v-3a1 1 0 00-1-1h0a2 2 0 00-2 2v1z" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
+      </div>
+      <button class="btn-captcha" (click)="verifyCaptcha()" aria-label="Verify" title="Verify" [disabled]="isLoading()">Verify</button>
+    </div>
+
+    <p *ngIf="errorMessage" class="error-msg">{{ errorMessage }}</p>
+
+  </section>
+  <div class="loading-backdrop" *ngIf="isLoading()">
+    <svg class="semi-spinner" viewBox="0 0 50 50" role="status" aria-label="Chargement">
+      <path d="M5 25 A20 20 0 0 1 45 25" stroke="currentColor" stroke-width="4" fill="none" stroke-linecap="round"/>
+    </svg>
+  </div>
+  <ng-container *ngIf="modal">
+    <!-- nothing: modal will be rendered in the parent container -->
+  </ng-container>
+</main>
+
+<!-- Footer -->
+<footer *ngIf="!modal">
+  <p>&copy; 2025 Amouzoun Proume - Conditions générales</p>
+  <p>Livraison rapide partout au Listenbourg</p>
+</footer>

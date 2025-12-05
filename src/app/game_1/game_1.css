@@ -757,6 +757,55 @@ footer p {
     padding: 28px 40px;
     border-radius: 8px;
   }
+  /* Captcha styles for step3 */
+  .captcha-wrapper {
+    max-width: 720px;
+    margin: 30px auto;
+    text-align: center;
+  }
+  .captcha-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 16px;
+  }
+  .captcha-cell {
+    border: 2px solid transparent;
+    border-radius: 6px;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .captcha-cell img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    display: block;
+  }
+  .captcha-cell.selected {
+    border-color: #ff9900;
+    box-shadow: 0 6px 18px rgba(255,153,0,0.14);
+  }
+  .captcha-actions { margin-top: 18px; display: flex; gap: 12px; justify-content: center; }
+  .error-msg { color: #ff6b6b; margin-top: 12px; font-weight: bold; }
+
+  /* Modal backdrop + inner container for captcha overlay */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0; /* top right bottom left 0 */
+    background: rgba(0,0,0,0.45);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+  }
+  .modal-inner {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 760px;
+    width: 100%;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+  }
   .radio-group {
     display: flex;
     flex-direction: column;

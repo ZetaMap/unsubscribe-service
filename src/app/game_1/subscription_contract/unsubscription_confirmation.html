@@ -8,6 +8,8 @@
       <input 
         type="text" 
         placeholder="Rechercher des produits..."
+        [value]="amouzounStore.searchBarQuery()"
+        (input)="amouzounStore.searchBarQuery.set($any($event.target).value)"
       >
       <button>Rechercher</button>
     </div>
@@ -56,18 +58,18 @@
       <tr>
         <td class="option-choice">
           <label>
-            <input type="radio" name="unsubscribe_when" value="now">
+            <input type="radio" name="unsubscribe_when" value="now" (change)="unsubscribeWhen.set('now')" [checked]="unsubscribeWhen() === 'now'">
             Se désabonner maintenant
           </label>
           <br>
           <label>
-            <input type="radio" name="unsubscribe_when" value="renewal" checked>
+            <input type="radio" name="unsubscribe_when" value="renewal" (change)="unsubscribeWhen.set('renewal')" [checked]="unsubscribeWhen() === 'renewal'">
             Se désabonner à la date de renouvellement (15 décembre 2025)
           </label>
         </td>
         <td class="option-notice">
-          <h3><strong>Important — L'abonnement prend fin immédiatement et ne sera pas remboursé.</strong></h3>
-          <p>1. En cas d'annulation, vous perdrez l'accès aux avantages suivants : <u style="color:blue"><a style="color:blue">Cliquez ici pour voir les avantages perdus</a></u>.</p>
+          <h3><strong>{{ warningText() }}</strong></h3>
+          <p>1. En cas d'annulation, vous perdrez l'accès aux avantages suivants : <u style="color:blue"><a routerLink="/amouzoun/account/proume" style="color:blue">Cliquez ici pour voir les avantages perdus</a></u>.</p>
         </td>
       </tr>
     </table>
@@ -80,7 +82,7 @@
   </section>
   <section class="unsubscribe-help">
     <h2>Besoin d'aide?</h2>
-    <p>Contactez notre <u style="color:blue"><a style="color:blue" (click)="goToContact()">Service Client dédié</a></u> pour toute question ou assistance concernant votre abonnement.</p>
+    <p>Contactez notre <u style="color:blue"><a style="color:blue" routerLink="/amouzoun/contact" >Service Client dédié</a></u> pour toute question ou assistance concernant votre abonnement.</p>
   </section>
 </main>
   

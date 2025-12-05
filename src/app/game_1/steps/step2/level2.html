@@ -8,6 +8,8 @@
       <input 
         type="text" 
         placeholder="Rechercher des produits..."
+        [value]="amouzounStore.searchBarQuery()"
+        (input)="amouzounStore.searchBarQuery.set($any($event.target).value)"
       >
       <button>Rechercher</button>
     </div>
@@ -41,12 +43,12 @@
         </div>
       </div>
       <div class="unsubscribe-actions-confirmation">
-        <button class="btn btn-primary" (click)="goNext()">Valider</button>
+        <button class="btn btn-primary" (click)="openCaptcha()">Valider</button>
       </div>
     </section>
     <section class="unsubscribe-help">
         <h2>Besoin d'aide?</h2>
-        <p>Contactez notre <u style="color:blue"><a style="color:blue" (click)="goToContact()">Service Client dédié</a></u> pour toute question ou assistance concernant votre abonnement.</p>
+        <p>Contactez notre <u style="color:blue"><a style="color:blue" routerLink="/amouzoun/contact">Service Client dédié</a></u> pour toute question ou assistance concernant votre abonnement.</p>
     </section>
 </main>
 <!-- Footer -->
@@ -54,3 +56,10 @@
   <p>&copy; 2025 Amouzoun Proume - Conditions générales</p>
   <p>Livraison rapide partout au Listenbourg</p>
 </footer>
+
+<!-- CAPTCHA Modal -->
+  <div class="modal-backdrop" *ngIf="isCaptchaOpen()" (click)="isCaptchaOpen.set(false)">
+  <div class="modal-inner" (click)="$event.stopPropagation()">
+    <game1-step3 [modal]="true" (solved)="onCaptchaSolved()" (canceled)="isCaptchaOpen.set(false)"></game1-step3>
+  </div>
+</div>

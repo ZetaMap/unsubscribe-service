@@ -2,7 +2,8 @@ import { Component, signal, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
-import { store } from '../../../app.store';
+import { store, amouzounStore } from '../../../app.store';
+import { Step3Component } from '../step3/level3';
 
 interface Choix {
   raison: string;
@@ -11,12 +12,13 @@ interface Choix {
 @Component({
   selector: 'game1-step1',
   standalone: true,
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule, Step3Component],
   templateUrl: './level2.html',
   styleUrls: ['../../game_1.css']
 })
 export class Step2Component {
   public store = store;
+  public amouzounStore = amouzounStore;
 
   choix: Choix[] = [
     {raison: 'Le prix est trop bas'},
@@ -27,7 +29,8 @@ export class Step2Component {
   ];
 
   isMenuOpen = signal(false);
-  searchQuery = signal('');
+  isCaptchaOpen = signal(false);
+  searchQuery = this.amouzounStore.searchBarQuery;
 
    toggleMenu(): void {
     this.isMenuOpen.set(!this.isMenuOpen());
@@ -39,9 +42,15 @@ export class Step2Component {
 
   constructor(private router: Router) {}
 
-  goNext(): void {
+  openCaptcha(): void {
     this.closeMenu();
-    this.router.navigate(['amouzoun/account/proume/unsubscribe/confirm/2']);
+    this.isCaptchaOpen.set(true);
+  }
+
+  onCaptchaSolved(): void {
+    this.isCaptchaOpen.set(false);
+    // proceed to final confirmation
+    this.router.navigate(['amouzoun/account/proume/unsubscribe/confirm']);
   }
 
   goToHome(): void {
@@ -52,10 +61,6 @@ export class Step2Component {
   goToAccount(): void {
     this.closeMenu();
     this.router.navigate(['amouzoun/account']);
-  }
-   goToContact(): void {
-    this.closeMenu();
-    this.router.navigate(['amouzoun/contact']);
   }
 
     logout(): void {

@@ -2,7 +2,7 @@ import { Component, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { store } from '../app.store';
+import { store, amouzounStore } from '../app.store';
 
 interface Product {
   id: number;
@@ -24,8 +24,10 @@ interface Product {
 export class Game1Component {
   // expose the global store so the template can read signals like `store.username()`
   public store = store;
+  public amouzounStore = amouzounStore;
   isMenuOpen = signal(false);
-  searchQuery = signal('');
+  // Use shared search query signal from the global amouzounStore
+  searchQuery = this.amouzounStore.searchBarQuery;
 
   products: Product[] = [
     { id: 1, name: 'Planche de sapin', description: 'Belle planche en sapin 20m par 0.5m', price: 39.99, rating: 5, reviews: 245, image: 'game_1/planche.jpg' },

@@ -8,6 +8,8 @@
       <input 
         type="text" 
         placeholder="Rechercher des produits..."
+        [value]="amouzounStore.searchBarQuery()"
+        (input)="amouzounStore.searchBarQuery.set($any($event.target).value)"
       >
       <button>Rechercher</button>
     </div>
@@ -43,7 +45,7 @@
     <br>
     <section class="unsubscribe-help">
         <h2>Besoin d'aide?</h2>
-        <p>Contactez notre <u style="color:blue"><a style="color:blue" (click)="goToContact()">Service Client dédié</a></u> pour toute question ou assistance concernant votre abonnement.</p>
+        <p>Contactez notre <u style="color:blue"><a style="color:blue" routerLink="/amouzoun/contact">Service Client dédié</a></u> pour toute question ou assistance concernant votre abonnement.</p>
     </section>
 </main>
 <!-- Footer -->

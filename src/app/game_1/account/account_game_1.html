@@ -8,6 +8,8 @@
       <input 
         type="text" 
         placeholder="Rechercher des produits..."
+        [value]="amouzounStore.searchBarQuery()"
+        (input)="amouzounStore.searchBarQuery.set($any($event.target).value)"
       >
       <button>Rechercher</button>
     </div>

@@ -2,7 +2,7 @@ import { Component, signal, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
-import { store } from '../../../app.store';
+import { store, amouzounStore } from '../../../app.store';
 
 @Component({
   selector: 'game1-step1',
@@ -13,9 +13,10 @@ import { store } from '../../../app.store';
 })
 export class Step1Component {
   public store = store;
+  public amouzounStore = amouzounStore;
 
   isMenuOpen = signal(false);
-  searchQuery = signal('');
+  searchQuery = this.amouzounStore.searchBarQuery;
 
    toggleMenu(): void {
     this.isMenuOpen.set(!this.isMenuOpen());
@@ -29,6 +30,7 @@ export class Step1Component {
 
   goNext(): void {
     this.closeMenu();
+    // go to step 2 (restore original behavior)
     this.router.navigate(['amouzoun/account/proume/unsubscribe/confirm/2']);
   }
 
@@ -40,10 +42,6 @@ export class Step1Component {
   goToAccount(): void {
     this.closeMenu();
     this.router.navigate(['amouzoun/account']);
-  }
-   goToContact(): void {
-    this.closeMenu();
-    this.router.navigate(['amouzoun/contact']);
   }
 
     logout(): void {

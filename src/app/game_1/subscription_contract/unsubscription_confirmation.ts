@@ -2,7 +2,7 @@ import { Component, signal, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
-import { store } from '../../app.store';
+import { store, amouzounStore } from '../../app.store';
 
 @Component({
   selector: 'app-unsubscription-confirmation',
@@ -13,9 +13,14 @@ import { store } from '../../app.store';
 })
 export class UnsubscriptionConfirmComponent {
   public store = store;
+  public amouzounStore = amouzounStore;
+
+  // signal pour la radio button
+  public unsubscribeWhen = signal<'now'|'renewal'>('renewal');
 
   isMenuOpen = signal(false);
-  searchQuery = signal('');
+  // Replace component-local searchQuery with centralized searchBarQuery signal
+  searchQuery = this.amouzounStore.searchBarQuery;
 
    toggleMenu(): void {
     this.isMenuOpen.set(!this.isMenuOpen());
@@ -37,11 +42,6 @@ export class UnsubscriptionConfirmComponent {
     this.router.navigate(['amouzoun/account']);
   }
 
-  goToContact(): void {
-    this.closeMenu();
-    this.router.navigate(['amouzoun/contact']);
-  }
-
     logout(): void {
     this.closeMenu();
     this.router.navigate(['']);
@@ -49,5 +49,12 @@ export class UnsubscriptionConfirmComponent {
 
   goToStep1(): void {
     this.router.navigate(['amouzoun/account/proume/unsubscribe/confirm/1']);
+  }
+
+// change le texte en fonction du choix de l'utilisateur sur la radio button
+  public warningText(): string {
+    return this.unsubscribeWhen() === 'now'
+      ? `Important — L'abonnement prend fin immédiatement et ne sera pas remboursé.`
+      : `Important — L'abonnement prendra fin le 15 décembre 2025 et ne sera pas remboursé.`;
   }
 }
