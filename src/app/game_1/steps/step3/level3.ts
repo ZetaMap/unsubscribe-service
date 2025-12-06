@@ -52,11 +52,29 @@ export class Step3Component {
     }
   }
 
-  toggleMenu(): void { this.isMenuOpen.set(!this.isMenuOpen()); }
-  closeMenu(): void { this.isMenuOpen.set(false); }
-  goToHome(): void { this.closeMenu(); this.router.navigate(['amouzoun']); }
-  goToAccount(): void { this.closeMenu(); this.router.navigate(['amouzoun/account']); }
-  logout(): void { this.closeMenu(); this.router.navigate(['']); }
+  toggleMenu(): void { 
+    this.isMenuOpen.set(!this.isMenuOpen()); 
+  }
+  
+  closeMenu(): void { 
+    this.isMenuOpen.set(false); 
+  }
+
+  goToHome(): void { 
+    this.closeMenu(); 
+    this.router.navigate(['amouzoun']); 
+  }
+  
+  goToAccount(): void { 
+    this.closeMenu(); 
+    this.router.navigate(['amouzoun/account']); 
+  }
+  
+  logout(): void { 
+    this.closeMenu(); 
+    this.router.navigate(['']); 
+  }
+
 
   private randomInt(max: number) { return Math.floor(Math.random() * max); }
 

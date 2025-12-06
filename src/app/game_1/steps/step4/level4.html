@@ -1,0 +1,89 @@
+<header>
+  <div class="header-container">
+    <!-- Logo -->
+    <a class="logo" routerLink="/amouzoun">AMOUZOUN PROUME</a>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+      <input 
+        type="text" 
+        placeholder="Rechercher des produits..."
+        [value]="amouzounStore.searchBarQuery()"
+        (input)="amouzounStore.searchBarQuery.set($any($event.target).value)"
+      >
+      <button>Rechercher</button>
+    </div>
+
+    <!-- Account Menu -->
+    <div class="account-menu"  [class.active]="isMenuOpen()" (click)="$event.stopPropagation()">
+      <button class="account-button" (click)="toggleMenu()">
+        👤 {{ store.username() }} ▼
+      </button>
+      <div class="dropdown-menu">
+        <a (click)="goToAccount()">Mon compte</a>
+        <a href="#orders">Mes commandes</a>
+        <a href="#wishlist">Ma liste de souhaits</a>
+        <button id="logout" (click)="logout()">Se déconnecter</button>
+      </div>
+    </div>
+  </div>
+</header>
+<main class="enigma-wrapper">
+  <section class="enigma">
+      <div class="unsubscribe-header"> 
+        <h2 class="unsubscribe-header">Certaines actions abruptes peuvent être prises sous l'influence de l'alcool ou de substances illicites. Nous allons vous faire passer des tests pour nous assurer de votre lucidité. Merci de votre compréhension :)</h2>
+      </div>
+    <h1 class="unsubscribe-header">Combien il y a-t-il de carrés dans l'image ci-dessous ?</h1>
+    <p class="hint">Regardez bien l'image ci-dessous et indiquez votre réponse.</p>
+
+    <div class="enigma-image">
+      <img src="game_1/carrés_enigme.png" alt="Enigme - compter les carrés" title="Enigme - compter les carrés" />
+    </div>
+
+    <div class="enigma-controls">
+      <div class="answer-label">Votre réponse</div>
+      <div class="radio-group" role="radiogroup" aria-labelledby="answerLabel">
+        <div id="answerLabel" class="sr-only">Options de réponses</div>
+        <label class="radio-option" *ngFor="let r of reponse">
+          <input type="radio" name="answer" [value]="r.valeur" [checked]="selectedAnswer() === r.valeur" (change)="selectAnswer(r.valeur)" />
+          {{ r.valeur }}
+        </label>
+      </div>
+      <div class="controls-row controls-actions">
+        <div class="left-action">
+          <button class="btn btn-help" (click)="toggleHelp()" [attr.aria-expanded]="isHelpOpen()" aria-controls="helpBox">Aide</button>
+        </div>
+        <div class="right-action">
+          <button id="validateBtn" class="btn btn-primary btn-confirm" (click)="validateAnswer()">Valider</button>
+        </div>
+      </div>
+      <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+      <div *ngIf="isCorrect() === true" class="success">Bravo ! C'est la bonne réponse.</div>
+      <div id="helpBox" class="help-box" *ngIf="isHelpOpen()" role="region" aria-labelledby="helpTitle" tabindex="0">
+        <p id="helpTitle" class="formula-title">Pour tout n nombre de carrés dans une ligne d'une grille n x n :</p>
+        <div class="help-image">
+          <img src="game_1/aide_enigme_carre.png" alt="Formule aide: nombre de carrés dans grille"/>
+        </div>
+      </div>
+      <div class="failure-overlay" *ngIf="isFailurePopupOpen()" id="failurePopup" role="alertdialog" aria-labelledby="failureTitle" aria-modal="true" tabindex="0">
+        <div class="failure-content">
+          <h3 class="unsubscribe-header">Échec du test</h3>
+          <p>Test de lucidité échoué, veuillez réessayer plus tard. Nous procédons à l'annulation de votre désabonnement...</p>
+          <div class="failure-actions">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+<section class="unsubscribe-help">
+        <h2>Besoin d'aide?</h2>
+        <p>Contactez notre <u class="help-link"><a routerLink="/amouzoun/contact">Service Client dédié</a></u> pour toute question ou assistance concernant votre abonnement.</p>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>&copy; 2025 Amouzoun Proume - Conditions générales</p>
+  <p>Livraison rapide partout au Listenbourg</p>
+</footer>
+

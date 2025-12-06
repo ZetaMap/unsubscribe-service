@@ -39,10 +39,20 @@
   cursor: pointer;
   transition: transform 0.08s ease, box-shadow 0.12s ease, background 0.12s ease;
 }
-.btn-audio-captcha:hover { background: rgba(11,94,215,0.06); }
-.btn-audio-captcha:active { transform: scale(0.98); }
-.btn-audio-captcha[aria-pressed="true"] { background: rgba(11,94,215,0.12); border-color: rgba(11,94,215,0.3); }
-.captcha-cell:hover { transform: translateY(-3px); box-shadow: 0 8px 18px rgba(13,110,253,0.08); }
+.btn-audio-captcha:hover { 
+    background: rgba(11,94,215,0.06); 
+}
+.btn-audio-captcha:active { 
+    transform: scale(0.98); 
+}
+.btn-audio-captcha[aria-pressed="true"] { 
+    background: rgba(11,94,215,0.12); 
+    border-color: rgba(11,94,215,0.3); 
+}
+.captcha-cell:hover { 
+    transform: translateY(-3px); 
+    box-shadow: 0 8px 18px rgba(13,110,253,0.08); 
+}
 
 .captcha-cell img {
   width: 100%;
@@ -106,8 +116,16 @@
   transition: transform 0.08s ease, box-shadow 0.12s ease;
   min-width: 120px;
 }
-.btn-captcha:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(13,110,253,0.18); }
- .btn-captcha[disabled] { opacity: 0.6; cursor: not-allowed; transform: none; box-shadow: none }
+.btn-captcha:hover { 
+    transform: translateY(-2px); 
+    box-shadow: 0 10px 28px rgba(13,110,253,0.18); 
+}
+
+.btn-captcha[disabled] { 
+    opacity: 0.6; cursor: not-allowed; 
+    transform: none; 
+    box-shadow: none 
+}
 
 .btn-secondary-captcha {
   border: 1px solid rgba(13,110,253,0.18);

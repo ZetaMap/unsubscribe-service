@@ -785,8 +785,16 @@ footer p {
     border-color: #ff9900;
     box-shadow: 0 6px 18px rgba(255,153,0,0.14);
   }
-  .captcha-actions { margin-top: 18px; display: flex; gap: 12px; justify-content: center; }
-  .error-msg { color: #ff6b6b; margin-top: 12px; font-weight: bold; }
+  .captcha-actions { 
+    margin-top: 18px; display: flex; 
+    gap: 12px; 
+    justify-content: center; 
+  }
+  .error-msg { 
+    color: #ff6b6b; 
+    margin-top: 12px; 
+    font-weight: bold; 
+  }
 
   /* Modal backdrop + inner container for captcha overlay */
   .modal-backdrop {
@@ -825,6 +833,12 @@ footer p {
     align-items: center;
     margin-top: 30px;
     font-size: 14px;
+  }
+
+  .help-link {
+    color: #0d6efd;
+    text-decoration: underline;
+    cursor: pointer;
   }
 
 

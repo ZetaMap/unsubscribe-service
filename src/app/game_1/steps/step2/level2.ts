@@ -50,7 +50,7 @@ export class Step2Component {
   onCaptchaSolved(): void {
     this.isCaptchaOpen.set(false);
     // proceed to final confirmation
-    this.router.navigate(['amouzoun/account/proume/unsubscribe/confirm']);
+    this.router.navigate(['amouzoun/account/proume/unsubscribe/confirm/4']);
   }
 
   goToHome(): void {

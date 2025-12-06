@@ -1,0 +1,173 @@
+/* Basic page layout */
+.enigma-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  min-height: calc(100vh - 120px);
+  padding: 24px;
+  box-sizing: border-box;
+}
+
+.enigma {
+  width: 100%;
+  max-width: 980px;
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 6px 18px rgba(11,37,66,0.08);
+}
+
+.enigma .hint {
+  margin-bottom: 12px;
+}
+.enigma-image {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+.enigma-image img {
+  max-width: 100%;
+  border: 1px solid #e6edf3;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  border-radius: 6px;
+}
+
+.enigma-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.enigma-controls label {
+  font-weight: 700;
+  font-size: 14px;
+}
+/* radio group styling */
+.radio-group {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+.radio-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 10px;
+  border: 1px solid #e9eef6;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.radio-option input[type="radio"] {
+  width: 16px;
+  height: 16px;
+}
+.radio-option:hover {
+  background: #f8fafc;
+}
+.sr-only {
+  position: absolute;
+  left: -9999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* numeric input removed in favor of radio options; retaining width helper if needed in the future */
+.controls-row {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 6px;
+}
+
+/* allow left and right layout in single row for actions */
+.controls-row.controls-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.controls-row.controls-actions .left-action { display:flex; align-items:center; gap: 8px; }
+.controls-row.controls-actions .right-action { display:flex; align-items:center; gap: 8px; }
+
+@media (max-width: 480px) {
+  .controls-row.controls-actions {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .controls-row.controls-actions .right-action { width: 100%; }
+  .controls-row.controls-actions .right-action .btn-confirm { width: 100%; }
+}
+
+
+.error {
+  color: #c92a2a;
+}
+.success {
+  color: #198754;
+}
+
+.note {
+  font-size: 13px;
+  margin-top: 12px;
+}
+
+/* Help box styling */
+.btn-help {
+  min-width: 140px;
+  padding: 10px 16px;
+  background: transparent;
+  border: 1px solid #dbe7f2;
+  color: #232f3e;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-help:hover {
+  background-color: #f8fafc;
+}
+
+.help-box {
+  border: 1px solid #e6edf3;
+  background: #fff;
+  padding: 14px;
+  margin-top: 12px;
+  border-radius: 6px;
+}
+
+.formula-title {
+  margin: 0 0 8px 0;
+  font-weight: 700;
+}
+
+.help-image img {
+  max-width: 100%;
+  display: block;
+}
+.help-box:focus {
+  outline: none;
+  box-shadow: 0 6px 18px rgba(11, 94, 215, 0.06);
+}
+
+.failure-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.42);
+  z-index: 2200;
+}
+.failure-content {
+  background: #fff;
+  color: #d6336c;
+  padding: 18px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 18px 48px rgba(11,37,66,0.22);
+}
+.failure-actions { display:flex; gap: 8px; justify-content: flex-end; margin-top: 12px; }
+.failure-content:focus { outline: none; }
+
