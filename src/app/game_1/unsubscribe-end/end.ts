@@ -146,7 +146,6 @@ export class EndComponent {
 
     closeProcessedAndGoHome(): void {
       this.isProcessed.set(false);
-      this.amouzounStore.gameFinished.set(true);
       this.goToGameMenu();
     }
 }

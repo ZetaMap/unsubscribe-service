@@ -22,8 +22,8 @@
       </button>
       <div class="dropdown-menu">
         <a (click)="goToAccount()">Mon compte</a>
-        <a href="#orders">Mes commandes</a>
-        <a href="#wishlist">Ma liste de souhaits</a>
+        <a >Mes commandes</a>
+        <a >Ma liste de souhaits</a>
         <button id="logout" (click)="logout()">Se déconnecter</button>
       </div>
     </div>
@@ -48,14 +48,14 @@
         [class.selected]="selectedIds.has(item.id)"
         (click)="toggleSelect(item.id)"
         (keydown)="handleKey($event, item.id)">
-        <img [src]="item.src" alt="{{ item.label }}" title="{{ item.label }}" />
+        <img [src]="item.src" alt="{{ (item.title || item.label) }}" title="{{ (item.title || item.label) }}" />
         <span class="checkmark" *ngIf="selectedIds.has(item.id)">✓</span>
       </div>
     </div>
 
     <div class="captcha-actions" role="group" aria-label="captcha actions">
       <div class="left-actions">
-      <button class="btn-secondary-captcha" (click)="shuffleGrid()" aria-label="Refresh images" title="Refresh images">
+      <button class="btn-secondary-captcha" (click)="shuffleGrid()" [disabled]="isSecondStage" aria-label="Refresh images" title="Refresh images">
         <svg width="24" height="24" viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
           <path d="M21 12a9 9 0 1 0-9 9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
           <path d="M21 3v6h-6" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />

@@ -4,7 +4,8 @@ import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 import { store, amouzounStore } from '../../../app.store';
 
-interface CaptchaImage { id: number; src: string; label: string }
+interface CaptchaImage { id: number; src: string; label: string; title?: string }
+interface CaptchaMalcolm { id: number; src: string; isCasting: boolean }
 
 @Component({
   selector: 'game1-step3',
@@ -31,14 +32,36 @@ export class Step3Component {
   isSpeaking = signal(false);
   private currentUtterance: SpeechSynthesisUtterance | null = null;
   isLoading = signal(false);
+  isSecondStage = false;
 
   private pool: CaptchaImage[] = [
-    { id: 1, src: 'game_1/planche.jpg', label: 'planche' },
-    { id: 2, src: 'game_1/chargeur_taille_crayon.jpg', label: 'chargeur' },
-    { id: 3, src: 'game_1/lave_vaisselle.jpg', label: 'lave-vaisselle' },
-    { id: 4, src: 'game_1/pvc.jpg', label: 'tuyau pvc' },
-    { id: 5, src: 'game_1/spaghetti.jpg', label: 'spaghetti bolognaise' },
-    { id: 6, src: 'game_1/lune.jpg', label: 'lune' }
+    { id: 1, src: 'game_1/planche.jpg', label: 'Planche' },
+    { id: 2, src: 'game_1/chargeur_taille_crayon.jpg', label: 'Chargeur' },
+    { id: 3, src: 'game_1/lave_vaisselle.jpg', label: 'Lave-vaisselle' },
+    { id: 4, src: 'game_1/pvc.jpg', label: 'Tuyau pvc' },
+    { id: 5, src: 'game_1/spaghetti.jpg', label: 'Spaghetti bolognaise' },
+    { id: 6, src: 'game_1/lune.jpg', label: 'Lune' },
+    { id: 7, src: 'game_1/pastis.png', label: 'Pastis' },
+    { id: 8, src: 'game_1/avion.jpeg', label: 'Avion' },
+    { id: 9, src: 'game_1/baguette.jpeg', label: 'Baguette' },
+  ];
+
+    private C: CaptchaMalcolm[] = [
+    { id: 1, src: 'game_1/casting/Bailey.jpeg', isCasting: false },
+    { id: 2, src: 'game_1/casting/Berfield.jpeg', isCasting: true },
+    { id: 3, src: 'game_1/casting/Christensen.jpeg', isCasting: false },
+    { id: 4, src: 'game_1/casting/Cranston.jpeg', isCasting: true },
+    { id: 5, src: 'game_1/casting/Evans.jpeg', isCasting: false },
+    { id: 6, src: 'game_1/casting/Jabba.jpeg', isCasting: false },
+    { id: 7, src: 'game_1/casting/JeffBezos.jpeg', isCasting: false },
+    { id: 8, src: 'game_1/casting/Kaczmarek.jpeg', isCasting: true },
+    { id: 9, src: 'game_1/casting/Muniz.jpeg', isCasting: true },
+    { id: 10, src: 'game_1/casting/okay.jpg', isCasting: false },
+    { id: 11, src: 'game_1/casting/Reynolds.jpeg', isCasting: false },
+    { id: 12, src: 'game_1/casting/Sullivan.jpeg', isCasting: true },
+    { id: 13, src: 'game_1/casting/Johnson.jpeg', isCasting: false },
+    { id: 14, src: 'game_1/casting/Theron.jpeg', isCasting: false },
+    { id: 15, src: 'game_1/casting/Khalifa.jpg', isCasting: false }
   ];
 
   constructor(private router: Router) {
@@ -87,12 +110,12 @@ export class Step3Component {
 
     for (let i = 0; i < 2; i++) {
       const base = targetImages[this.randomInt(targetImages.length)];
-      grid.push({ ...base, id: Date.now() + this.randomInt(9999) + i });
+      grid.push({ ...base, id: Date.now() + this.randomInt(9999) + i, title: base.label });
     }
 
-    while (grid.length < 9) {
+    while (grid.length < 15) {
       const pick = this.pool[this.randomInt(this.pool.length)];
-      grid.push({ ...pick, id: Date.now() + this.randomInt(9999) + grid.length });
+      grid.push({ ...pick, id: Date.now() + this.randomInt(9999) + grid.length, title: pick.label });
     }
 
     for (let i = grid.length - 1; i > 0; i--) {
@@ -101,6 +124,25 @@ export class Step3Component {
     }
 
     this.gridImages = grid;
+  }
+
+  private prepareMalcolmGrid(): void {
+    const grid: CaptchaImage[] = [];
+    this.targetLabel = 'Casting de Malcolm';
+    // Place all 12 casting images in a 3x4 grid, keeping structure identical
+    this.C.forEach((c, idx) => {
+      const selectionLabel = c.isCasting ? 'Casting de Malcolm' : 'other';
+      const actorName = this.extractActorName(c.src);
+      grid.push({ id: Date.now() + idx, src: c.src, label: selectionLabel, title: actorName });
+    });
+    this.gridImages = grid;
+  }
+
+  private extractActorName(path: string): string {
+    const parts = path.split('/');
+    const file = parts[parts.length - 1];
+    const nameWithExt = file.replace(/\.[^.]+$/, '');
+    return nameWithExt;
   }
 
   toggleSelect(id: number): void {
@@ -145,6 +187,15 @@ export class Step3Component {
     }
 
     this.errorMessage = '';
+    // if first stage passed, switch to Malcolm captcha on same page
+    if (!this.isSecondStage) {
+      this.selectedIds.clear();
+      this.prepareMalcolmGrid();
+      this.isSecondStage = true;
+      this.isLoading.set(false);
+      return;
+    }
+    // second stage passed
     if (this.modal) {
       this.isLoading.set(false);
       this.solved.emit();
@@ -155,7 +206,15 @@ export class Step3Component {
     }, 1500);
   }
 
-  shuffleGrid(): void { this.selectedIds.clear(); this.prepareGrid(); }
+  shuffleGrid(): void {
+    // Disable shuffle in Malcolm stage to avoid resetting to first captcha
+    if (this.isSecondStage) {
+      this.selectedIds.clear();
+      return;
+    }
+    this.selectedIds.clear();
+    this.prepareGrid();
+  }
 
   // synthese vocale pour le captcha
   toggleSpeak(): void {

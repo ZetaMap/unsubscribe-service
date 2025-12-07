@@ -11,7 +11,8 @@
 .captcha-grid {
   display: grid;
 .captcha-actions .left-actions { display:flex; gap: 10px; align-items: center; }
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, 116px);
+  justify-content: center;
   gap: 12px;
   margin-top: 18px;
 }
@@ -24,6 +25,8 @@
   position: relative;
   cursor: pointer;
   transition: transform 0.12s ease, box-shadow 0.12s ease;
+  aspect-ratio: 1 / 1;
+  width: 116px;
 }
 .btn-audio-captcha {
   background: transparent;
@@ -56,9 +59,9 @@
 
 .captcha-cell img {
   width: 100%;
-  height: 120px;
+  height: 100%;
   object-fit: cover;
-  display:block;
+  display: block;
 }
 
 .captcha-cell.selected {
@@ -204,5 +207,5 @@
 
 @media (max-width: 480px) {
   .captcha-grid { gap: 8px; }
-  .captcha-cell img { height: 92px }
+  .captcha-cell { aspect-ratio: 1 / 1; }
 }

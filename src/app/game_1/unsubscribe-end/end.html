@@ -21,8 +21,8 @@
       </button>
       <div class="dropdown-menu">
         <a (click)="goToAccount()">Mon compte</a>
-        <a href="#orders">Mes commandes</a>
-        <a href="#wishlist">Ma liste de souhaits</a>
+        <a >Mes commandes</a>
+        <a >Ma liste de souhaits</a>
         <button id="logout" (click)="logout()">Se déconnecter</button>
       </div>
     </div>
@@ -53,7 +53,7 @@
     <div id="processedPopup" class="processed-overlay" *ngIf="isProcessed()" role="dialog" aria-labelledby="processedTitle" tabindex="0">
       <div class="processed-content">
         <h3 id="processedTitle" class="unsubscribe-header">Demande prise en compte</h3>
-        <p>Votre demande de résiliation a été prise en compte, cela prendra un certain temps à prendre effet</p>
+        <p>Votre demande de résiliation a été prise en compte, cela prendra un certain temps à prendre effet.</p>
         <div class="processed-actions">
           <button class="btn btn-primary" (click)="closeProcessedAndGoHome()">Retour au menu</button>
         </div>
