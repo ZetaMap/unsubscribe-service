@@ -1,0 +1,77 @@
+<header>
+  <div class="header-container">
+    <!-- Logo -->
+    <a class="logo" routerLink="/amouzoun">AMOUZOUN PROUME</a>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+      <input 
+        type="text" 
+        placeholder="Rechercher des produits..."
+        [value]="amouzounStore.searchBarQuery()"
+        (input)="amouzounStore.searchBarQuery.set($any($event.target).value)"
+      >
+      <button>Rechercher</button>
+    </div>
+
+    <!-- Account Menu -->
+    <div class="account-menu"  [class.active]="isMenuOpen()" (click)="$event.stopPropagation()">
+      <button class="account-button" (click)="toggleMenu()">
+        👤 {{ store.username() }} ▼
+      </button>
+      <div class="dropdown-menu">
+        <a (click)="goToAccount()">Mon compte</a>
+        <a href="#orders">Mes commandes</a>
+        <a href="#wishlist">Ma liste de souhaits</a>
+        <button id="logout" (click)="logout()">Se déconnecter</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+    <section class="content">
+        <h1 class="unsubscribe-header">Voulez-vous renoncer aux délicieux avantages Proume ?</h1>
+        <div class="unsubscribe-actions-confirmation">
+            <div class="left-action">
+                <button class="btn btn-primary btn-confirm" (click)="goToAccount()" [disabled]="isProcessing() || isProcessed()">Finalement, non</button>
+            </div>
+            <div class="right-action">
+                <button class="btn btn-danger btn-confirm" id="confirmBtn" [class.btn-floating]="isBouncing()" (click)="onConfirmClick()" [disabled]="isProcessing() || isProcessed()">Je confirme</button>
+            </div>
+        </div>
+    </section>
+    <!-- Processing overlay -->
+    <div class="processing-overlay" *ngIf="isProcessing()" role="status" aria-live="polite">
+      <div class="processing-content">
+        <div class="spinner"></div>
+        <p>Votre demande est en cours de traitement...</p>
+      </div>
+    </div>
+
+    <!-- Processed confirmation overlay -> final message and return home -->
+    <div id="processedPopup" class="processed-overlay" *ngIf="isProcessed()" role="dialog" aria-labelledby="processedTitle" tabindex="0">
+      <div class="processed-content">
+        <h3 id="processedTitle" class="unsubscribe-header">Demande prise en compte</h3>
+        <p>Votre demande de résiliation a été prise en compte, cela prendra un certain temps à prendre effet</p>
+        <div class="processed-actions">
+          <button class="btn btn-primary" (click)="closeProcessedAndGoHome()">Retour au menu</button>
+        </div>
+      </div>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <section class="unsubscribe-help">
+        <h2>Besoin d'aide?</h2>
+        <p>Contactez notre <u class="help-link"><a routerLink="/amouzoun/contact">Service Client dédié</a></u> pour toute question ou assistance concernant votre abonnement.</p>
+    </section>
+</main>
+<!-- Footer -->
+<footer>
+  <p>&copy; 2025 Amouzoun Proume - Conditions générales</p>
+  <p>Livraison rapide partout au Listenbourg</p>
+</footer>

@@ -10,6 +10,7 @@ import { Step1Component } from './game_1/steps/step1/level1';
 import { Step2Component } from './game_1/steps/step2/level2';
 import { Step3Component } from './game_1/steps/step3/level3';
 import { Step4Component } from './game_1/steps/step4/level4';
+import { EndComponent } from './game_1/unsubscribe-end/end';
 
 // Ce fichier définie les routes de l'application, c'est a dire les differentes pages accessibles via un URL
 export const routes: Routes = [
@@ -24,5 +25,6 @@ export const routes: Routes = [
   { path: 'amouzoun/account/proume/unsubscribe/confirm/2', component: Step2Component },
   { path: 'amouzoun/account/proume/unsubscribe/confirm/3', component: Step3Component },
   { path: 'amouzoun/account/proume/unsubscribe/confirm/4', component: Step4Component },
+  { path: 'amouzoun/account/proume/unsubscribe/confirm/send', component: EndComponent },
   { path: '**', redirectTo: '' }
 ];

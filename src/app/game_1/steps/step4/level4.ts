@@ -76,7 +76,7 @@ export class Step4Component {
       this.isCorrect.set(true);
       // navigate or give feedback, for now show success alert and navigate back home
       setTimeout(() => {
-        this.router.navigate(['amouzoun']);
+        this.router.navigate(['amouzoun/account/proume/unsubscribe/confirm/send']);
       }, 750);
       // close help if visible
       this.isHelpOpen.set(false);

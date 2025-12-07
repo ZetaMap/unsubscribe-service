@@ -840,6 +840,10 @@ footer p {
     text-decoration: underline;
     cursor: pointer;
   }
+  .liste-numeree {
+    text-align: left;
+    padding : 10px;
+  }
 
 
 

@@ -5,5 +5,6 @@ export const store = {
 };
 
 export const amouzounStore = {
+  gameFinished: signal(false),
   searchBarQuery: signal('')
 };
