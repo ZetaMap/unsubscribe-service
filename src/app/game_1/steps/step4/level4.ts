@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
 import { store, amouzounStore } from '../../../app.store';
 
 interface Reponse {
-  valeur: number;
+  valeur: string | number;
 }
 
 @Component({
@@ -25,7 +25,8 @@ export class Step4Component {
       { valeur: 2720 },
       { valeur: 1980 },
       { valeur: 2870 },
-      { valeur: 3010 }
+      { valeur: 3010 },
+      { valeur: 'Je ne sait pas' }
     ];
 
   isMenuOpen = signal(false);
@@ -33,7 +34,7 @@ export class Step4Component {
   isHelpOpen = signal(false);
   isFailurePopupOpen = signal(false);
     // selected option (radio box)
-  selectedAnswer = signal<number | null>(null);
+  selectedAnswer = signal<string | number | null>(null);
   isCorrect = signal<boolean | null>(null);
   errorMessage = '';
     readonly correctAnswer = 2870; // correct structured reply value per request
@@ -64,7 +65,7 @@ export class Step4Component {
     this.router.navigate(['']); 
   }
 
-  selectAnswer(value: number | null): void {
+  selectAnswer(value: string | number | null): void {
     this.selectedAnswer.set(value);
   }
 
@@ -72,7 +73,7 @@ export class Step4Component {
     this.errorMessage = '';
     const val = this.selectedAnswer();
     if (val === null) { this.errorMessage = 'Veuillez sélectionner une option.'; this.isCorrect.set(false); return; }
-    if (val === this.correctAnswer) {
+    if (val === this.correctAnswer || (typeof val === 'string' && val === 'Je ne sait pas')) {
       this.isCorrect.set(true);
       // navigate or give feedback, for now show success alert and navigate back home
       setTimeout(() => {

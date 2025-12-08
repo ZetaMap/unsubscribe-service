@@ -73,9 +73,9 @@ export class EndComponent {
         el.style.height = `${this.btnHeight}px`;
         this.x = rect.left;
         this.y = rect.top;
-        // small random speed
-        this.vx = (Math.random() * 6 + 3) * (Math.random() > 0.5 ? 1 : -1);
-        this.vy = (Math.random() * 6 + 3) * (Math.random() > 0.5 ? 1 : -1);
+
+        this.vx = (Math.random() * 6 + 3) * 2;
+        this.vy = (Math.random() * 6 + 3) * 2;
         this.isBouncing.set(true);
         // ensure we switch to fixed so we can animate via left/top
         el.style.position = 'fixed';
@@ -106,14 +106,13 @@ export class EndComponent {
       this.x += this.vx;
       this.y += this.vy;
       // bounds
-      if (this.x <= 0) { this.x = 0; this.vx = -this.vx; }
-      if (this.y <= 0) { this.y = 0; this.vy = -this.vy; }
-      if (this.x + this.btnWidth >= winW) { this.x = winW - this.btnWidth; this.vx = -this.vx; }
-      if (this.y + this.btnHeight >= winH) { this.y = winH - this.btnHeight; this.vy = -this.vy; }
+      if (this.x <= -500) { this.x = 0; this.vx = -this.vx; }
+      if (this.y <= -500) { this.y = 0; this.vy = -this.vy; }
+      if (this.x + this.btnWidth >= winW +500) { this.x = winW - this.btnWidth; this.vx = -this.vx; }
+      if (this.y + this.btnHeight >= winH +500) { this.y = winH - this.btnHeight; this.vy = -this.vy; }
       el.style.left = `${this.x}px`;
       el.style.top = `${this.y}px`;
       // small visual wobble
-      el.style.transform = `translateZ(0)`;
       this.animId = requestAnimationFrame(() => this.animLoop());
     }
 
