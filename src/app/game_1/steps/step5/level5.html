@@ -40,7 +40,7 @@
            (mouseleave)="hideLens()"
            (mousemove)="onMouseMove($event)"
            (click)="onLensClick()">
-        <img id="bezosImg" src="/game_1/foule_bezos.png" alt="Foule Bezos" (load)="onImageLoad($event)">
+        <img id="bezosImg" src="game_1/foule_bezos.png" alt="Foule Bezos" (load)="onImageLoad($event)">
         <div class="woc-lens" *ngIf="isLensVisible()"
              [style.width.px]="lensRadius * 2"
              [style.height.px]="lensRadius * 2"
