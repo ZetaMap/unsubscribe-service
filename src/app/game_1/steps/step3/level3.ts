@@ -129,8 +129,13 @@ export class Step3Component {
   private prepareMalcolmGrid(): void {
     const grid: CaptchaImage[] = [];
     this.targetLabel = 'Casting de Malcolm';
-    // Place all 12 casting images in a 3x4 grid, keeping structure identical
-    this.C.forEach((c, idx) => {
+    // Shuffle the Malcolm casting list to randomize order
+    const shuffled = [...this.C];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    shuffled.forEach((c, idx) => {
       const selectionLabel = c.isCasting ? 'Casting de Malcolm' : 'other';
       const actorName = this.extractActorName(c.src);
       grid.push({ id: Date.now() + idx, src: c.src, label: selectionLabel, title: actorName });
@@ -207,9 +212,9 @@ export class Step3Component {
   }
 
   shuffleGrid(): void {
-    // Disable shuffle in Malcolm stage to avoid resetting to first captcha
     if (this.isSecondStage) {
       this.selectedIds.clear();
+      this.prepareMalcolmGrid();
       return;
     }
     this.selectedIds.clear();

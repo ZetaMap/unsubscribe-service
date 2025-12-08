@@ -1,0 +1,78 @@
+<header>
+  <div class="header-container">
+    <!-- Logo -->
+    <a class="logo" routerLink="/amouzoun">AMOUZOUN PROUME</a>
+
+    <!-- Search Bar -->
+    <div class="search-bar">
+      <input 
+        type="text" 
+        placeholder="Rechercher des produits..."
+        [value]="amouzounStore.searchBarQuery()"
+        (input)="amouzounStore.searchBarQuery.set($any($event.target).value)"
+      >
+      <button>Rechercher</button>
+    </div>
+
+    <!-- Account Menu -->
+    <div class="account-menu"  [class.active]="isMenuOpen()" (click)="$event.stopPropagation()">
+      <button class="account-button" (click)="toggleMenu()">
+        👤 {{ store.username() }} ▼
+      </button>
+      <div class="dropdown-menu">
+        <a (click)="goToAccount()">Mon compte</a>
+        <a >Mes commandes</a>
+        <a >Ma liste de souhaits</a>
+        <button id="logout" (click)="logout()">Se déconnecter</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+    <section class="woc-section">
+    <div class="unsubscribe-header"> 
+        <h2 class="unsubscribe-header">Certaines actions abruptes peuvent être prises sous l'influence de l'alcool ou de substances illicites. Nous allons vous faire passer des tests pour nous assurer de votre lucidité. Merci de votre compréhension :)</h2>
+      </div>
+      <h1 class="unsubscribe-header">Où est Jeff Bezos ?</h1>
+      <div class="woc-container"
+           (mouseenter)="showLens()"
+           (mouseleave)="hideLens()"
+           (mousemove)="onMouseMove($event)"
+           (click)="onLensClick()">
+        <img id="bezosImg" src="/game_1/foule_bezos.png" alt="Foule Bezos" (load)="onImageLoad($event)">
+        <div class="woc-lens" *ngIf="isLensVisible()"
+             [style.width.px]="lensRadius * 2"
+             [style.height.px]="lensRadius * 2"
+             [style.left.px]="lensX - lensRadius"
+             [style.top.px]="lensY - lensRadius"
+             [style.background-image]="'url(/game_1/foule_bezos.png)'"
+             [style.background-size]="backgroundSize"
+             [style.background-position]="backgroundPosition"
+             role="button"
+             aria-label="Loupe"
+             title="Loupe (x3)"></div>
+      </div>
+    </section>
+
+    <!-- Confirmation popup -->
+    <div class="confirm-overlay" *ngIf="isConfirmOpen()" role="dialog" aria-labelledby="confirmTitle" tabindex="0">
+      <div class="confirm-content">
+        <h3 id="confirmTitle" class="unsubscribe-header">Bonne trouvaille !</h3>
+        <p>Vous avez trouvé Jeff Bezos.</p>
+        <div class="processed-actions">
+          <button class="btn btn-primary" (click)="confirmAndContinue()">Continuer</button>
+          <button class="btn" (click)="closeConfirm()">Annuler</button>
+        </div>
+      </div>
+    </div>
+    <section class="unsubscribe-help">
+        <h2>Besoin d'aide?</h2>
+        <p>Contactez notre <u class="help-link"><a routerLink="/amouzoun/contact">Service Client dédié</a></u> pour toute question ou assistance concernant votre abonnement.</p>
+    </section>
+</main>
+<!-- Footer -->
+<footer>
+  <p>&copy; 2025 Amouzoun Proume - Conditions générales</p>
+  <p>Livraison rapide partout au Listenbourg</p>
+</footer>

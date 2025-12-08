@@ -93,7 +93,7 @@ export class EndComponent {
           this.isProcessing.set(false);
           this.isProcessed.set(true);
           this.focusProcessed();
-        }, 1400);
+        }, 2500);
       }
     }
 
