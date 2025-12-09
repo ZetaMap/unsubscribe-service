@@ -59,6 +59,7 @@
       </div>
       <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
       <div *ngIf="isCorrect() === true" class="success">Bravo ! C'est la bonne réponse.</div>
+      <div *ngIf="nobodyKnows() === true" class="success">Moi non plus.</div>
       <div id="helpBox" class="help-box" *ngIf="isHelpOpen()" role="region" aria-labelledby="helpTitle" tabindex="0">
         <p id="helpTitle" class="formula-title">Pour tout n nombre de carrés dans une ligne d'une grille n x n :</p>
         <div class="help-image">

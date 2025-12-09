@@ -26,7 +26,7 @@ export class Step4Component {
       { valeur: 1980 },
       { valeur: 2870 },
       { valeur: 3010 },
-      { valeur: 'Je ne sait pas' }
+      { valeur: 'Je ne sais pas' }
     ];
 
   isMenuOpen = signal(false);
@@ -36,6 +36,7 @@ export class Step4Component {
     // selected option (radio box)
   selectedAnswer = signal<string | number | null>(null);
   isCorrect = signal<boolean | null>(null);
+  nobodyKnows = signal<boolean | null>(null);
   errorMessage = '';
     readonly correctAnswer = 2870; // correct structured reply value per request
   // helper: if you want a separate options list, it's available via `reponse` above
@@ -73,12 +74,23 @@ export class Step4Component {
     this.errorMessage = '';
     const val = this.selectedAnswer();
     if (val === null) { this.errorMessage = 'Veuillez sélectionner une option.'; this.isCorrect.set(false); return; }
-    if (val === this.correctAnswer || (typeof val === 'string' && val === 'Je ne sait pas')) {
+    if (val === this.correctAnswer) {
       this.isCorrect.set(true);
       // navigate or give feedback, for now show success alert and navigate back home
       setTimeout(() => {
         this.router.navigate(['amouzoun/account/proume/unsubscribe/confirm/5']);
       }, 750);
+      // close help if visible
+      this.isHelpOpen.set(false);
+      // close failure popup if visible
+      this.isFailurePopupOpen.set(false);
+      return;
+    }
+    if (typeof val === 'string' && val === 'Je ne sais pas') {
+      this.nobodyKnows.set(true);
+      setTimeout(() => {
+        this.router.navigate(['amouzoun/account/proume/unsubscribe/confirm/5']);
+      }, 1000);
       // close help if visible
       this.isHelpOpen.set(false);
       // close failure popup if visible

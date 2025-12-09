@@ -34,16 +34,54 @@ export class Step3Component {
   isLoading = signal(false);
   isSecondStage = false;
 
+  // Images "cibles" : peuvent être demandées (Planche, Avion, etc.)
   private pool: CaptchaImage[] = [
     { id: 1, src: 'game_1/planche.jpg', label: 'Planche' },
-    { id: 2, src: 'game_1/chargeur_taille_crayon.jpg', label: 'Chargeur' },
-    { id: 3, src: 'game_1/lave_vaisselle.jpg', label: 'Lave-vaisselle' },
-    { id: 4, src: 'game_1/pvc.jpg', label: 'Tuyau pvc' },
-    { id: 5, src: 'game_1/spaghetti.jpg', label: 'Spaghetti bolognaise' },
-    { id: 6, src: 'game_1/lune.jpg', label: 'Lune' },
-    { id: 7, src: 'game_1/pastis.png', label: 'Pastis' },
-    { id: 8, src: 'game_1/avion.jpeg', label: 'Avion' },
-    { id: 9, src: 'game_1/baguette.jpeg', label: 'Baguette' },
+    { id: 2, src: 'game_1/captcha/planche1.jpg', label: 'Planche' },
+    { id: 3, src: 'game_1/captcha/planche2.jpg', label: 'Planche' },
+    { id: 4, src: 'game_1/captcha/planche3.jpg', label: 'Planche' },
+    { id: 5, src: 'game_1/captcha/lave-Vaisselle2.jpg', label: 'Lave-vaisselle' },
+    { id: 6, src: 'game_1/captcha/lve-vaisselle3.jpg', label: 'Lave-vaisselle' },
+    { id: 7, src: 'game_1/captcha/tuyau2.jpg', label: 'Tuyau pvc' },
+    { id: 8, src: 'game_1/captcha/spaghetti2.jpg', label: 'Spaghetti bolognaise' },
+    { id: 9, src: 'game_1/captcha/spaghetti3.jpg', label: 'Spaghetti bolognaise' },
+    { id: 10, src: 'game_1/captcha/spaghetti4.jpg', label: 'Spaghetti bolognaise' },
+    { id: 11, src: 'game_1/captcha/lune1.jpg', label: 'Lune' },
+    { id: 12, src: 'game_1/captcha/lune2.jpg', label: 'Lune' },
+    { id: 13, src: 'game_1/captcha/lune3.jpg', label: 'Lune' },
+    { id: 14, src: 'game_1/captcha/alcool.png', label: 'Alcool' },
+    { id: 15, src: 'game_1/captcha/alcool2.jpg', label: 'Alcool' },
+    { id: 16, src: 'game_1/captcha/alcool3.jpg', label: 'Alcool' },
+    { id: 17, src: 'game_1/captcha/alcool4.jpg', label: 'Alcool' },
+    { id: 18, src: 'game_1/captcha/alcool5.jpg', label: 'Alcool' },
+    { id: 19, src: 'game_1/captcha/avion.jpeg', label: 'Avion' },
+    { id: 20, src: 'game_1/captcha/avion2.jpg', label: 'Avion' },
+    { id: 21, src: 'game_1/captcha/avion3.jpg', label: 'Avion' },
+    { id: 22, src: 'game_1/captcha/avion4.jpg', label: 'Avion' },
+    { id: 23, src: 'game_1/captcha/avion5.jpg', label: 'Avion' },
+    { id: 24, src: 'game_1/captcha/pain1.jpeg', label: 'Pain' },
+    { id: 25, src: 'game_1/captcha/pain2.jpg', label: 'Pain' },
+    { id: 26, src: 'game_1/captcha/pain3.jpg', label: 'Pain' },
+    { id: 27, src: 'game_1/captcha/pain4.jpg', label: 'Pain' },
+    { id: 28, src: 'game_1/captcha/pain5.jpg', label: 'Pain' },
+    { id: 29, src: 'game_1/captcha/pain6.jpg', label: 'Pain' },
+    { id: 30, src: 'game_1/captcha/chargeur2.jpg', label: 'Chargeur' },
+    { id: 31, src: 'game_1/captcha/chargeur3.jpg', label: 'Chargeur' },
+    { id: 32, src: 'game_1/captcha/chargeur4.jpg', label: 'Chargeur' },
+  ];
+
+  // Images de remplissage : jamais la cible à sélectionner
+  private fillerPool: CaptchaImage[] = [
+    { id: 1001, src: 'game_1/captcha/remplissage/remplissage1.jpg', label: '__remplissage__', title: 'Image de remplissage' },
+    { id: 1002, src: 'game_1/captcha/remplissage/remplissage2.jpg', label: '__remplissage__', title: 'Image de remplissage' },
+    { id: 1003, src: 'game_1/captcha/remplissage/remplissage3.jpg', label: '__remplissage__', title: 'Image de remplissage' },
+    { id: 1004, src: 'game_1/captcha/remplissage/remplissage4.jpg', label: '__remplissage__', title: 'Image de remplissage' },
+    { id: 1005, src: 'game_1/captcha/remplissage/remplissage5.jpg', label: '__remplissage__', title: 'Image de remplissage' },
+    { id: 1006, src: 'game_1/captcha/remplissage/remplissage6.jpg', label: '__remplissage__', title: 'Image de remplissage' },
+    { id: 1007, src: 'game_1/captcha/remplissage/remplissage7.jpg', label: '__remplissage__', title: 'Image de remplissage' },
+    { id: 1008, src: 'game_1/captcha/remplissage/remplissage8.jpg', label: '__remplissage__', title: 'Image de remplissage' },
+    { id: 1009, src: 'game_1/captcha/remplissage/remplissage9.jpg', label: '__remplissage__', title: 'Image de remplissage' },
+    { id: 1010, src: 'game_1/captcha/remplissage/remplissage10.jpg', label: '__remplissage__', title: 'Image de remplissage' },
   ];
 
     private C: CaptchaMalcolm[] = [
@@ -104,6 +142,8 @@ export class Step3Component {
   //selectionne les images aleatoirement du captcha 
   private prepareGrid(): void {
     const grid: CaptchaImage[] = [];
+
+    // On choisit la cible uniquement parmi les vraies images (pas le remplissage)
     const target = this.pool[this.randomInt(this.pool.length)].label;
     this.targetLabel = target;
     const targetImages = this.pool.filter(p => p.label === target);
@@ -114,8 +154,11 @@ export class Step3Component {
     }
 
     while (grid.length < 15) {
-      const pick = this.pool[this.randomInt(this.pool.length)];
-      grid.push({ ...pick, id: Date.now() + this.randomInt(9999) + grid.length, title: pick.label });
+      // Mélange entre vraies images et images de remplissage
+      const useFiller = this.fillerPool.length > 0 && Math.random() < 0.5;
+      const source = useFiller ? this.fillerPool : this.pool;
+      const pick = source[this.randomInt(source.length)];
+      grid.push({ ...pick, id: Date.now() + this.randomInt(9999) + grid.length, title: pick.title ?? pick.label });
     }
 
     for (let i = grid.length - 1; i > 0; i--) {

@@ -48,7 +48,12 @@
         [class.selected]="selectedIds.has(item.id)"
         (click)="toggleSelect(item.id)"
         (keydown)="handleKey($event, item.id)">
-        <img [src]="item.src" alt="{{ (item.title || item.label) }}" title="{{ (item.title || item.label) }}" />
+        <img
+          [src]="item.src"
+          alt="{{ (item.title || item.label) }}"
+          loading="lazy"
+          decoding="async"
+        />
         <span class="checkmark" *ngIf="selectedIds.has(item.id)">✓</span>
       </div>
     </div>
