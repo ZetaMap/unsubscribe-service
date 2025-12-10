@@ -2,7 +2,7 @@ import { Component, signal, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
-import { store, amouzounStore } from '../../app.store';
+import { store, amouzounStore, gameCheck } from '../../app.store';
 
 @Component({
   selector: 'game1-end',
@@ -14,6 +14,7 @@ import { store, amouzounStore } from '../../app.store';
 export class EndComponent {
   public store = store;
   public amouzounStore = amouzounStore;
+  public gameCheck = gameCheck;
 
   isMenuOpen = signal(false);
   searchQuery = this.amouzounStore.searchBarQuery;
@@ -144,6 +145,7 @@ export class EndComponent {
     }
 
     closeProcessedAndGoHome(): void {
+      this.gameCheck.amouzoun.set(true);
       this.isProcessed.set(false);
       this.goToGameMenu();
     }

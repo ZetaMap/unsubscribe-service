@@ -17,7 +17,14 @@
     <!-- Account Menu -->
     <div class="account-menu"  [class.active]="isMenuOpen()" (click)="$event.stopPropagation()">
       <button class="account-button" (click)="toggleMenu()">
-        👤 {{ store.username() }} ▼
+        <span class="account-avatar">
+          <ng-container *ngIf="store.avatarUrl(); else defaultAvatarAmz">
+            <img [src]="store.avatarUrl()" alt="Avatar" class="account-avatar-img" />
+          </ng-container>
+          <ng-template #defaultAvatarAmz>👤</ng-template>
+        </span>
+        <span class="account-username">{{ store.username() }}</span>
+        <span class="account-caret">▼</span>
       </button>
       <div class="dropdown-menu">
         <a (click)="goToAccount()">Mon compte</a>
@@ -50,11 +57,11 @@
         </label>
       </div>
       <div class="controls-row controls-actions">
-        <div class="left-action">
-          <button class="btn btn-help" (click)="toggleHelp()" [attr.aria-expanded]="isHelpOpen()" aria-controls="helpBox">Aide</button>
-        </div>
         <div class="right-action">
           <button id="validateBtn" class="btn btn-primary btn-confirm" (click)="validateAnswer()">Valider</button>
+        </div>
+        <div class="left-action">
+          <button class="btn btn-help" (click)="toggleHelp()" [attr.aria-expanded]="isHelpOpen()" aria-controls="helpBox">Aide</button>
         </div>
       </div>
       <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>

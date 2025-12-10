@@ -17,7 +17,14 @@
     <!-- Account Menu -->
     <div class="account-menu"  [class.active]="isMenuOpen()" (click)="$event.stopPropagation()">
       <button class="account-button" (click)="toggleMenu()">
-        👤 {{ store.username() }} ▼
+        <span class="account-avatar">
+          <ng-container *ngIf="store.avatarUrl(); else defaultAvatarAmz">
+            <img [src]="store.avatarUrl()" alt="Avatar" class="account-avatar-img" />
+          </ng-container>
+          <ng-template #defaultAvatarAmz>👤</ng-template>
+        </span>
+        <span class="account-username">{{ store.username() }}</span>
+        <span class="account-caret">▼</span>
       </button>
       <div class="dropdown-menu">
         <a (click)="goToAccount()">Mon compte</a>
@@ -50,7 +57,12 @@
     </div>
 
     <div class="card">
-      <div class="card-icon">👤</div>
+      <div class="card-icon">
+        <ng-container *ngIf="store.avatarUrl(); else defaultProfileIcon">
+          <img [src]="store.avatarUrl()" alt="Avatar" class="card-avatar-img" />
+        </ng-container>
+        <ng-template #defaultProfileIcon>👤</ng-template>
+      </div>
       <h2>Modifier votre Profil</h2>
       <p>Mettez à jour vos informations personnelles</p>
     </div>
