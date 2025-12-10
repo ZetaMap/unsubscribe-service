@@ -122,7 +122,7 @@
             <ng-container *ngIf="isConnected; else notConnectedCard">
               <div
                 class="subscription-card"
-                *ngFor="let row of pagedRows"
+                *ngFor="let row of rows"
                 [class.subscription-card-disabled]="!row.isImplemented"
               >
                 <div class="subscription-card-header">
@@ -167,35 +167,7 @@
               </div>
             </ng-template>
           </div>
-          <div class="datatable-footer">
-            <div class="pagination">
-              <button
-                type="button"
-                class="page-btn"
-                (click)="changePage(currentPage - 1)"
-                [disabled]="currentPage === 1"
-              >
-                «
-              </button>
-              <button
-                type="button"
-                class="page-btn"
-                *ngFor="let page of pageNumbers"
-                [class.active]="page === currentPage"
-                (click)="changePage(page)"
-              >
-                {{ page }}
-              </button>
-              <button
-                type="button"
-                class="page-btn"
-                (click)="changePage(currentPage + 1)"
-                [disabled]="currentPage === totalPages"
-              >
-                »
-              </button>
-            </div>
-          </div>
+          
           <section class="subscriptions-pricing">
             <h3>Récapitulatif des montants</h3>
             <ul>
