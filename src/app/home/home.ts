@@ -193,6 +193,8 @@ export class HomePageComponent implements OnInit {
     this.store.username.set('');
     this.store.password.set('');
     this.store.avatarUrl.set('');
+    this.isChecked.amouzoun.set(false);
+    this.rows = this.rows.map(row => ({ ...row, checked: false }));
     this.usernameInput = '';
     this.passwordInput = '';
   }

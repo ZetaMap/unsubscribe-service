@@ -22,7 +22,7 @@ export class Step2Component {
 
   choix: Choix[] = [
     {raison: 'Le prix est trop bas'},
-    {raison: 'Mes capacités cognitives sont limités'},
+    {raison: 'Mes capacités cognitives sont limitées'},
     {raison: 'Je n\'en ai pas l\'utilité pour le moment'},
     {raison: 'Le service est trop avantageux'},
     {raison: 'Le service client ne répond plus'},

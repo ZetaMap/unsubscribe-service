@@ -13,7 +13,7 @@ import { Step4Component } from './game_1/steps/step4/level4';
 import { Step5Component } from './game_1/steps/step5/level5';
 import { EndComponent } from './game_1/unsubscribe-end/end';
 
-// Ce fichier définie les routes de l'application, c'est a dire les differentes pages accessibles via un URL
+// Ce fichier définit les routes de l'application, c'est-à-dire les différentes pages accessibles via une URL
 export const routes: Routes = [
   { path: '', component: HomePageComponent },
   { path: 'amouzoun', component: Game1Component },
