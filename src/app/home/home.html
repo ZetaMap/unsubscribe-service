@@ -38,6 +38,27 @@
 
 <div
   class="username-modal-backdrop"
+  *ngIf="isUnsubscribeInfoOpen"
+>
+  <div class="username-modal">
+    <h2>Comment se désabonner d'Amouzoun Proume ?</h2>
+    <p>Pour vous désabonner, suivez les étapes suivantes :</p>
+    <p>
+      Aller sur <strong>Mon compte</strong> →
+      <strong>Abonnement Amouzoun Proume</strong> →
+      <strong>Gérer / annuler</strong> →
+      suivre les étapes.
+    </p>
+    <div class="username-modal-actions">
+      <button type="button" style="margin-right: 15px;" (click)="closeUnsubscribeInfo()">Annuler</button>
+      <button type="button" (click)="confirmUnsubscribeFromHome()">Se désabonner</button>
+    </div>
+  </div>
+  
+</div>
+
+<div
+  class="username-modal-backdrop"
   *ngIf="notImplementedModalOpen"
 >
   <div class="username-modal">
@@ -138,7 +159,7 @@
                     <button
                       type="button"
                       class="btn-game"
-                      [routerLink]="row.url"
+                      (click)="onUnsubscribeClick(row)"
                       [disabled]="row.checked"
                     >
                       {{ row.checked ? 'Annulé' : 'Se désabonner' }}

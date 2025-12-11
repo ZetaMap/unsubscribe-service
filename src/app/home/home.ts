@@ -1,7 +1,7 @@
 import { Component, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { store, gameCheck } from '../app.store';
 
@@ -24,7 +24,7 @@ interface Game {
   styleUrls: ['./home.css']
 })
 export class HomePageComponent implements OnInit {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   public store = store;
   public isChecked = gameCheck;
@@ -35,9 +35,12 @@ export class HomePageComponent implements OnInit {
   usernameInput = '';
   passwordInput = '';
 
-    // État pour le popup "jeu non disponible"
-    notImplementedModalOpen = false;
-    notImplementedGameName = '';
+  // État pour le popup "jeu non disponible"
+  notImplementedModalOpen = false;
+  notImplementedGameName = '';
+
+  // Popup d'explication pour le désabonnement Amouzoun Proume
+  isUnsubscribeInfoOpen = false;
 
   rows: Game[] = [
     { id: 1, name: 'Amouzoun Proume',  url: '/amouzoun', checked: this.isChecked.amouzoun(), isImplemented: true, prix: 24.99, typePrix: 'monthly' },
@@ -144,6 +147,22 @@ export class HomePageComponent implements OnInit {
     this.currentPage = page;
   }
 
+  onUnsubscribeClick(row: Game): void {
+    if (row.checked) {
+      return;
+    }
+
+    if (row.id === 1) {
+      // Amouzoun Proume : afficher la popup explicative
+      this.isUnsubscribeInfoOpen = true;
+      return;
+    }
+
+    if (row.url) {
+      this.router.navigateByUrl(row.url);
+    }
+  }
+
   confirmUsername(): void {
     const value = this.usernameInput.trim();
     const password = this.passwordInput;
@@ -187,6 +206,15 @@ export class HomePageComponent implements OnInit {
     this.usernameInput = this.store.username();
     this.passwordInput = this.store.password();
     this.isUsernameModalOpen = true;
+  }
+
+  closeUnsubscribeInfo(): void {
+    this.isUnsubscribeInfoOpen = false;
+  }
+
+  confirmUnsubscribeFromHome(): void {
+    this.isUnsubscribeInfoOpen = false;
+    this.router.navigate(['amouzoun']);
   }
 
   logout(): void {

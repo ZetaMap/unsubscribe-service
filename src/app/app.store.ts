@@ -42,6 +42,7 @@ export const store = {
 
 export const gameCheck = {
   amouzoun: signal(persisted.gameCheck?.amouzoun ?? false)
+  //reste des jeux ici
 };
 
 export const amouzounStore = {
